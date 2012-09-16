@@ -1,0 +1,176 @@
+%{
+/*
+Cotovia: Text-to-speech system for Galician and Spanish languages.
+
+Developed by the Multimedia Technologies Group at the University of Vigo (Spain)
+ and the Center 'Ramón Piñeiro' for Research in Humanities.
+http://webs.uvigo.es/gtm_voz
+http://www.cirp.es
+
+Copyright: 1996-2012  Multimedia Technologies Group, University of Vigo, Spain
+           1996-2012 Centro Ramon Pineiro para a Investigación en Humanidades,
+                     Xunta de Galicia, Santiago de Compostela, Spain
+
+License: GPL-3.0+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 3 can be found in /usr/share/common-licenses/GPL-3.
+
+______________________________________________________________________________*/
+ 
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <regex.h>
+#include <string.h>
+#include "alternativas.hpp"
+
+extern Variante *variantes;
+extern int nvariantes;
+Variante actual;
+char *cadena;
+char vacia[]="";
+extern int num_lin;
+int yyerror (char * s);
+int yylex();
+int yyparse(void);
+%}
+%token <num> NUMERO
+%token <num> COMILLA
+%token <num> COMA_V
+%token <num> PUNTO_V
+%token <str> REGEXP
+%token <str> PALABRA
+
+%union {
+char *str;
+char id;
+int  num;
+}
+
+
+
+%%
+todo :	//Linea vacia
+	| variante
+	{
+
+	 variantes=(Variante *)
+	 realloc(variantes,sizeof(Variante)*(nvariantes+1));
+	 variantes[nvariantes++]=actual;
+	 actual.excepciones=NULL;
+	 actual.n_excep=0;
+	}
+	|todo variante
+	{
+	variantes=(Variante *)
+	 realloc(variantes,sizeof(Variante)*(nvariantes+1));
+	 variantes[nvariantes++]=actual;
+	 actual.excepciones=NULL;
+	 actual.n_excep=0;
+
+	}
+	;
+
+variante: NUMERO  
+	{
+	 actual.importancia=$1;
+	}
+	regexps 
+	  {
+	  }
+	  |  variante palabras
+	  {
+	  }
+	  ;
+regexps: expresion1 
+	{
+	  strcpy(actual.exp_ort,cadena);
+		free(cadena);
+	  
+	}
+	expresion1 
+	{
+	  strcpy(actual.exp_fon,cadena);
+		free(cadena);
+	}
+	expresion2
+	{
+	  strcpy(actual.sust,cadena);
+		free(cadena);
+	}
+	;
+expresion1: COMILLA REGEXP COMILLA
+	{
+	  cadena=$2;
+	}
+	| COMILLA PALABRA COMILLA
+	{
+	  cadena=$2;
+	}
+	;
+expresion2: COMILLA PALABRA COMILLA
+	 {
+	  cadena=$2;
+	  }
+	| expresion1
+	{
+	}
+	|
+	 COMILLA COMILLA
+	 {
+	  cadena=strdup(vacia);
+	 }
+	;
+palabra: PALABRA COMA_V
+	{
+	  //fprintf(stdout,"%d ",actual.n_excep);
+	  actual.excepciones=(char **) realloc(actual.excepciones,
+	  	sizeof(char*)*(actual.n_excep+1));
+	  actual.excepciones[actual.n_excep++]=$1;
+	}
+	;
+palabras1: palabra 
+	{
+	  //fprintf(stdout,"Palabras1\n"); kkkkkk
+	}
+	| palabras1 palabra
+	{
+	  //fprintf(stdout,"Palabras\n");
+	}
+	;
+palabras: palabras1 PALABRA PUNTO_V
+	{
+	  //fprintf(stdout,"%d ",actual.n_excep);
+	  actual.excepciones=(char **) realloc(actual.excepciones,
+	  	sizeof(char*)*(actual.n_excep+1));
+	  actual.excepciones[actual.n_excep++]=$2;
+	}
+	|
+	PALABRA PUNTO_V
+	{
+	  //fprintf(stdout,"%d ",actual.n_excep);
+	  actual.excepciones=(char **) realloc(actual.excepciones,
+	  	sizeof(char*)*(actual.n_excep+1));
+	  actual.excepciones[actual.n_excep++]=$1;
+	}
+	;
+%%
+
+int yyerror (char * s){
+	fprintf(stderr,"Error leyendo variantes: %s en linea %d\n",s,num_lin+1);
+	return 1;
+}
+

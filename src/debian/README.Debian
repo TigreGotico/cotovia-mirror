@@ -1,0 +1,6 @@
+cotovia for Debian
+------------------
+
+Installs binary executable cotovia in /usr/bin and data in /usr/share/cotovia/data
+
+ -- Francisco Mendez <fmendez@gts.uvigo.es>  Mon, 20 Jun 2011 11:14:12 +0200

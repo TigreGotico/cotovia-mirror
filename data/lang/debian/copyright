@@ -1,0 +1,12 @@
+Format: http://dep.debian.net/deps/dep5
+Upstream-Name: cotovia-lang
+Source: http://webs.uvigo.es/gtm_voz/index.php?option=com_content&view=article&id=130
+
+Files: *
+Copyright: 1996-2012 Multimedia Technologies Group, University of Vigo, Spain
+                      http://webs.uvigo.es/gtm_voz
+           1996-2012 Centro Ramon Pineiro para a Investigación en Humanidades,
+                     Xunta de Galicia, Santiago de Compostela, Spain
+                     http://www.cirp.es
+License: The files in this package are licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License. http://creativecommons.org/licenses/by-sa/3.0/
+

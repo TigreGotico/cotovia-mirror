@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+ifeq ($(shell uname -m),x86_64)
+bindir=../bin64
+else
+bindir=../bin
+endif
+%:
+	dh $@ 
+override_dh_auto_build:
+	dh_auto_build
+	/usr/bin/help2man $(bindir)/cotovia -o debian/cotovia.1
+	/usr/bin/help2man $(bindir)/cotovia-ecess-m1 -o debian/cotovia-ecess-m1.1
+
+override_dh_clean:
+	dh_clean 
+	rm -fr debian/cotovia.1 debian/cotovia-ecess-m1.1

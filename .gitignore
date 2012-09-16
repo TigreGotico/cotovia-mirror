@@ -1,0 +1,62 @@
+bin/
+bin64/
+lib64/
+dep/
+*.build
+*.deb
+*.deb
+*.changes
+*.substvars
+data/david
+data/iago
+data/sabela
+data/sabela-large
+data/iago/debian/cotovia-voice-iago/
+data/iago/debian/files
+data/lang/debian/cotovia-lang-es/
+data/lang/debian/cotovia-lang-gl/
+data/lang/debian/files
+src/debian/cotovia-ecess-m1.1
+src/debian/cotovia-ecess-m1/
+src/debian/cotovia.1
+src/debian/cotovia/
+src/debian/files
+
+# source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db

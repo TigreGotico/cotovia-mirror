@@ -1,0 +1,24 @@
+﻿* Requirements (Debian package name given in brackets)
+  - GCC               (gcc, g++)
+  - GNU Bison         (bison)
+  - GNU Flex          (flex)
+  - Alsa audio        (libasound2, libasound2-dev)
+  - Expat             (libexpat1, libexpat1-dev)
+  - help2man          (help2man)
+  - devscripts package and its dependencies in order to build Debian packages  (devscripts)
+ 
+* Build
+  - Compile:
+    make
+  - This will install executables in $(bindir) (see Makefile)
+  - Make debian packages:
+    make debian-packages
+   - This will generate the following deb packages:
+       ../cotovia_version-name_arch.deb
+       ../cotovia-ecess-m1_version-name_arch.deb
+       ../data/cotovia-lang-gl_version-name_all.deb
+       ../data/cotovia-lang-es_version-name_all.deb
+       ../data/cotovia-voice-iago_version-name_all.deb
+
+Copyright (C): 1996-2012 Group on Multimedia Technologies, Universidade de Vigo, Spain http://webs.uvigo.es/gtm_voz
+               1996-2012 Centro Ramón Piñeiro para a Investigación en Humanidades, Xunta de Galicia, Santiago de Compostela, Spain http://www.cirp.es

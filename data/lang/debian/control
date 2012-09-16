@@ -1,0 +1,27 @@
+Source: cotovia-lang
+Section: sound
+Priority: extra
+Maintainer: <cotovia@gts.uvigo.es>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.2
+Homepage: http://webs.uvigo.es/gtm_voz/index.php?option=com_content&view=article&id=130
+
+Package: cotovia-lang-gl
+Architecture: all
+Depends: ${misc:Depends}
+Description: Galician language data for cotovia. 
+ Cotovia is a bilingual text-to-speech system for Galician and Spanish 
+ languages developed by the Multimedia Technologies Group at the 
+ University of Vigo (Spain) and a group of researchers of the University 
+ of Santiago de Compostela with support from Centro Ramon Pineiro 
+ para a Investigacion en Humanidades. 
+
+Package: cotovia-lang-es
+Architecture: all
+Depends: ${misc:Depends}
+Description: Spanish language data for cotovia. 
+ Cotovia is a bilingual text-to-speech system for Galician and Spanish 
+ languages developed by the Multimedia Technologies Group at the 
+ University of Vigo (Spain) and a group of researchers of the University 
+ of Santiago de Compostela with support from Centro Ramon Pineiro 
+ para a Investigacion en Humanidades. 
