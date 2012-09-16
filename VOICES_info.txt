@@ -1,0 +1,43 @@
+
+Cotovia is a unit-selection text-to-speech system, i.e., generates the synthetic speech signal as a
+concatenation of prerecorded segments. Cotovia determines the sequence of sounds, its intonation and 
+duration from the input text. Actually several intonation contours are considered in parallel and for
+each one a sequence of speech units is selected. The final intonation contours is selected according to 
+the suitability of the sequence of speech units found. Obviously the computational load and, therefore,
+the time of execution depends on the number of speech units of the speaker and the number of parallel
+intonation contours considered. The number of parallel intonation contours iniatially considered may be
+ specified by the optional parameter -N (default 50), although the speech unit search is only performed for 
+the M most different contours (parameter -M, default 10). Of course, the quality also depends on the number
+ of speech units  and on the number of parallel intonation contours.
+
+At this time two Galician voices are available at sourceforge. These two voices are also suitable for Spanish,
+ with little distortion, since the phonemes of Spanish may be considered a subset of Galician phonemes. The
+ nicknames of the two speakers are Iago and Sabela. Nevertheless you will find three voices available for
+ Cotovia:
+
+* iago : Galician male speaker, duration of the recording: 80 minutes. It was Cotovia's first voice and the
+ quality is limited by the reduced recording time.
+
+* sabela-large : Galician female speaker, duration of the recording: 14.5 hours. Use this voice if you want to
+ obtain maximum quality speech and you are not too worried about execution time.
+
+* sabela: default speaker. A subset of Sabela's recordings (about 4 hours). A good compromise between quality
+ and execution time.
+
+ An additional Spanish speaker, free for noncommercial use, is available through external links (see Cotovia Blog
+ for further information):
+
+* david: Spanish male speaker, recording duration about 2.5 hours.
+
+
+Examples:
+_________
+
+
+cotovia -i input_text.txt -s   (default values:   sabela voice, N = 50, M = 10)
+cotovia -i input_text.txt -s -V sabela    (sabela voice, default values: N=50, M=10)
+cotovia -i input_text.txt -s -V sabela_large  (sabela-large voice, default values: N=50, M=10)
+cotovia -i input_text.txt -s -V sabela_large -N 1 -M 1 (sabela-large voice,N = 1, M = 1)
+cotovia -i input_text.txt -s -V david -l es
+
+

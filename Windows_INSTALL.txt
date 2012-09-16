@@ -1,0 +1,52 @@
+
+Download and uncompress the files cotovia-voice-iago_0.5.tar.gz and cotovia-lang_0.5.tar.gz from the source code directory to a local directory (D:\cotovia, for instance).
+
+
+D:\cotovia>dir
+
+16/07/2012  10:36    <DIR>          .
+16/07/2012  10:36    <DIR>          ..
+16/07/2012  10:33    <DIR>          cotovia-code
+               0 archivos              0 bytes
+               3 dirs  552.456.515.584 bytes libres
+
+D:\cotovia> dir cotovia-code
+ 
+16/07/2012  10:33    <DIR>          .
+16/07/2012  10:33    <DIR>          ..
+16/07/2012  10:35    <DIR>          data
+               0 archivos              0 bytes
+               3 dirs  552.456.515.584 bytes libres
+
+Download and uncompress the file cotovia-exe_0.5.zip from the Windows_EXE directory. You should obtain a new bin directory inside cotovia-code that contains the windows executable.
+
+
+D:\cotovia>dir cotovia-code
+ El volumen de la unidad D no tiene etiqueta.
+ El número de serie del volumen es: DA29-8395
+
+16/07/2012  10:46    <DIR>          .
+16/07/2012  10:46    <DIR>          ..
+16/07/2012  10:46    <DIR>          bin
+16/07/2012  10:35    <DIR>          data
+               0 archivos              0 bytes
+               4 dirs  552.451.829.760 bytes libres
+
+D:\cotovia\cotovia-code>cd bin
+
+D:\cotovia\cotovia-code\bin>dir
+
+16/07/2012  10:55    <DIR>          .
+16/07/2012  10:55    <DIR>          ..
+16/07/2012  10:09         1.688.064 cotovia.exe
+16/07/2012  10:58               142 galician_intro.txt
+               2 archivos      1.688.206 bytes
+               2 dirs  552.449.486.848 bytes libres
+
+
+Running an example:
+
+D:\cotovias\cotovia-code\bin>cotovia -i galician_intro.txt -s -V iago -l gl
+
+
+It's a good idea to include the executable file in your PATH variable.
