@@ -21,6 +21,9 @@ src/debian/cotovia-ecess-m1/
 src/debian/cotovia.1
 src/debian/cotovia/
 src/debian/files
+data/.git
+data/.gitignore
+data/Voices_Git_README.txt
 
 # source #
 ###################
