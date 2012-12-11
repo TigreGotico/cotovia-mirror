@@ -43,7 +43,8 @@ ______________________________________________________________________________*/
 int Audio::audio_abierto = 0;
 #ifndef _WIN32
 snd_pcm_t * Audio::pcm_handle;          
-const char * Audio::device="plug:dmix"; 
+//const char * Audio::device="plug:dmix"; 
+const char * Audio::device="default"; 
 int Audio::channels = 1;
 #else
 HWAVEOUT       Audio::hWaveOut;

@@ -35,4 +35,4 @@ ______________________________________________________________________________*/
  
 const char *cotovia_version="0.5";
 const char *cotovia_date="June 2012";
-const char *cotovia_compilation="Compiled Wed Sep 12 06:01:16 CEST 2012 using gcc (Debian 4.4.5-8) 4.4.5";
+const char *cotovia_compilation="Compiled Tue Dec 11 10:42:25 CET 2012 using gcc (Debian 4.4.5-8) 4.4.5";

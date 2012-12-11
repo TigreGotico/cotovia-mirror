@@ -7,6 +7,7 @@ dep/
 *.deb
 *.changes
 *.substvars
+*.out
 data/david
 data/iago
 data/sabela
