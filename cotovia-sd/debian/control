@@ -1,0 +1,17 @@
+Source: cotovia-sd
+Section: sound
+Priority: extra
+Maintainer: <cotovia@gts.uvigo.es>
+Build-Depends: debhelper (>= 8.0.0), speech-dispatcher, libdotconf-dev, libglib2.0-dev, libasound2-dev
+Standards-Version: 3.9.2
+Homepage: http://sourceforge.net/projects/cotovia/
+
+Package: cotovia-sd
+Architecture: any
+Depends: speech-dispatcher, ${misc:Depends}
+Description: Cotovia's module for Speech dispatcher. 
+ Cotovia is a bilingual text-to-speech system for Galician and Spanish 
+ languages developed by the Multimedia Technologies Group at the 
+ University of Vigo (Spain) and a group of researchers of the University 
+ of Santiago de Compostela with support from Centro Ramon Pineiro 
+ para a Investigacion en Humanidades.

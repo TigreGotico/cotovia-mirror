@@ -25,6 +25,7 @@ src/debian/files
 data/.git
 data/.gitignore
 data/Voices_Git_README.txt
+cotovia-sd/debian/tmp
 
 # source #
 ###################
