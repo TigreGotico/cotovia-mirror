@@ -1,0 +1,15 @@
+#!/bin/sh -e
+sed -i '/sd_cotovia/d' /etc/speech-dispatcher/speechd.conf
+
+languages=`ls /usr/share/cotovia/data/lang 2>/dev/null`
+for lang in $languages ; do
+sed -ri  's/^#cotovia-sd //' /usr/share/cotovia/data/lang/$lang/abr.txt
+done
+
+# if test "$1" = "remove"; then
+#     sed -i '/sd_cotovia/d' /etc/speech-dispatcher/speechd.conf
+# fi
+# 
+# if test "$1" = "purge"; then
+#     sed -i '/sd_cotovia/d' /etc/speech-dispatcher/speechd.conf
+# fi

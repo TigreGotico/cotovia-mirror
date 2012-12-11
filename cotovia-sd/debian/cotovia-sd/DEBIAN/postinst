@@ -1,0 +1,45 @@
+#!/bin/sh 
+#Include the Cotovia module in the Speech Dispatcher configuration file
+sed -i '/sd_cotovia/d' /etc/speech-dispatcher/speechd.conf
+grep "REMOVE" /etc/speech-dispatcher/speechd.conf > /etc/speech-dispatcher/temp
+if [ -s "/etc/speech-dispatcher/temp" ]; then
+     sed -i '/REMOVE/ i\
+AddModule "cotovia" "sd_cotovia" "cotovia.conf"' /etc/speech-dispatcher/speechd.conf   
+else
+      sed -i '$a\
+AddModule "cotovia" "sd_cotovia" "cotovia.conf"' /etc/speech-dispatcher/speechd.conf  
+fi
+rm /etc/speech-dispatcher/temp
+
+#Add languages and voices in the system to the configuration file of Cotovia
+sed -i '/AddVoice "/d' /etc/speech-dispatcher/modules/cotovia.conf
+sed -i '/CotoviaLanguage/d' /etc/speech-dispatcher/modules/cotovia.conf
+
+languages=`ls /usr/share/cotovia/data/lang 2>/dev/null`
+for lang in $languages ; do
+    sed -i '/LANGUAGES/ a\
+CotoviaLanguage	"'$lang'" "'$lang'" "iso-8859-1"' /etc/speech-dispatcher/modules/cotovia.conf
+sed -ri  's/^(.?\.,.*)/#cotovia-sd \1/' /usr/share/cotovia/data/lang/$lang/abr.txt
+done
+
+male=1
+female=1
+voices=`ls /usr/share/cotovia/data 2>/dev/null`
+voices=`echo $voices | sed 's/\<lang\>//'`
+
+for voice in $voices ; do
+      
+    if [ "$voice" = sabela ]; then
+	for lang in $languages ; do
+	    sed -i '/VOICES/ a\
+AddVoice "'$lang'" "FEMALE'$female'" "'$voice'"' /etc/speech-dispatcher/modules/cotovia.conf
+	done
+	female=$(($female+1))
+    else
+	for lang in $languages ; do
+	    sed -i '/VOICES/ a\
+AddVoice "'$lang'" "MALE'$male'" "'$voice'"' /etc/speech-dispatcher/modules/cotovia.conf
+	done  
+	male=$(($male+1))
+    fi
+done

@@ -1,0 +1,78 @@
+#!/bin/sh 
+
+#Include the Cotovia module in the Speech Dispatcher configuration file
+sed -i '/sd_cotovia/d' /etc/speech-dispatcher/speechd.conf
+grep "REMOVE" /etc/speech-dispatcher/speechd.conf > /etc/speech-dispatcher/temp
+if [ -s "/etc/speech-dispatcher/temp" ]; then
+     sed -i '/REMOVE/ i\
+AddModule "cotovia" "sd_cotovia" "cotovia.conf"' /etc/speech-dispatcher/speechd.conf   
+else
+      sed -i '$a\
+AddModule "cotovia" "sd_cotovia" "cotovia.conf"' /etc/speech-dispatcher/speechd.conf  
+fi
+rm /etc/speech-dispatcher/temp
+
+#Add languages and voices in the system to the configuration file of Cotovia
+sed -i '/AddVoice "/d' /etc/speech-dispatcher/modules/cotovia.conf
+sed -i '/CotoviaLanguage/d' /etc/speech-dispatcher/modules/cotovia.conf
+
+voices=`ls /usr/share/cotovia/data 2>/dev/null`
+voices=`echo $voices | sed 's/\<lang\>//'`
+languages=`ls /usr/share/cotovia/data/lang 2>/dev/null`
+
+for lang in $languages ; do
+    sed -i '/LANGUAGES/ a\
+CotoviaLanguage	"'$lang'" "'$lang'" "iso-8859-1"' /etc/speech-dispatcher/modules/cotovia.conf
+
+    male=1
+    female=1  
+    for voice in $voices ; do
+	FILE="/usr/share/cotovia/data/$voice/info"
+	#make sure file exist and readable
+	if [ ! -f $FILE ]; then
+	    echo "$FILE : does not exists"
+  	    exit 1
+	elif [ ! -r $FILE ]; then
+  	    echo "$FILE: can not read"
+  	    exit 2
+	fi
+	
+	#Set loop separator to end of line
+	#BAKIFS=$IFS
+	#IFS=$(echo -en "\n\b")
+	gender=MALE
+	n=0
+	while read line
+	do
+	    if [ "$n" = 0 ]; then 
+		gender=$(echo $line | awk '{ print $1 }')
+		n=$(($n+1))
+	    else
+		voicelangs=$(echo $line)
+		#echo $voicelangs
+		#echo $lang
+		pos=`expr match "$voicelangs" .*$lang`
+		#echo $pos
+		if [ "$pos" != 0 ]; then 
+		    if [ "$gender" = MALE ]; then
+			sed -i '/VOICES/ a\
+AddVoice "'$lang'" "'$gender$male'" "'$voice'"' /etc/speech-dispatcher/modules/cotovia.conf  
+			male=$(($male+1))
+		    elif [ "$gender" = FEMALE ]; then
+			sed -i '/VOICES/ a\
+AddVoice "'$lang'" "'$gender$female'" "'$voice'"' /etc/speech-dispatcher/modules/cotovia.conf 
+			female=$(($female+1))
+		    elif [ "$gender" = CHILD_MALE ] || [ "$gender" = CHILD_FEMALE ]; then
+			sed -i '/VOICES/ a\
+AddVoice "'$lang'" "'$gender'" "'$voice'"' /etc/speech-dispatcher/modules/cotovia.conf    
+		    fi
+		fi
+	    fi
+	    
+	done < $FILE
+    
+	#restore $IFS which was used to determine what the field separators are
+	#IFS=$BAKIFS
+	
+    done
+done
