@@ -4,44 +4,44 @@
 PROJECT COORDINATORS:
 ______________________
 
-Manuel Gonz·lez Gonz·lez, University of Santiago de Compostela, Spain.
-Eduardo RodrÌguez Banga, Universidade de Vigo, Spain.
-Carmen GarcÌa Mateo, Universidade de Vigo, Spain.
+Manuel Gonz√°lez Gonz√°lez, University of Santiago de Compostela, Spain.
+Eduardo Rodr√≠guez Banga, Universidade de Vigo, Spain.
+Carmen Garc√≠a Mateo, Universidade de Vigo, Spain.
 
 
 ENGINEERING TEAM (main contributors to programming and signal processing developments):
 _________________________________________________________________________________________
 
-Xavier Fern·ndez Salgado 
-Francisco Campillo DÌaz 
-Francisco MÈndez PazÛ 
+Xavier Fern√°ndez Salgado 
+Francisco Campillo D√≠az 
+Francisco M√©ndez Paz√≥ 
 Gonzalo Iglesias Iglesias
-Camilo Gir·ldez Ruibal
-Leandro RodrÌguez LiÒares
-Laura DocÌo Fern·ndez
-Carmen MagariÒos Iglesias
+Camilo Gir√°ldez Ruibal
+Leandro Rodr√≠guez Li√±ares
+Laura Doc√≠o Fern√°ndez
+Carmen Magari√±os Iglesias
 
 
 TEAM OF LINGUISTS (main contributors to the collection of language resources and linguistic support):
 _____________________________________________________________________________________________________
 
-Elisa Fern·ndez Rei
+Elisa Fern√°ndez Rei
 Ruth Losada Soto
-Elisa Roca RodrÌguez 
+Elisa Roca Rodr√≠guez 
 Lorena Seijo Pereiro
-LuÌs Xuncal Pereira 
-Ana MartÌnez Õnsua 
-Lidia GÛmez GarcÌa
+Lu√≠s Xuncal Pereira 
+Ana Mart√≠nez √çnsua 
+Lidia G√≥mez Garc√≠a
 Ana Escourido Pernas
-ConcepciÛn DiÈguez DiÈguez
-Monserrat Arza RodrÌguez
-Zoraida Barral RodrÌguez
+Concepci√≥n Di√©guez Di√©guez
+Monserrat Arza Rodr√≠guez
+Zoraida Barral Rodr√≠guez
 
 
 OTHER CONTRIBUTORS
 ______________________________________________________________________________
 
-Diego BroullÛn Lago (Speech Distpacher Module)
+Diego Broull√≥n Lago (Speech Distpacher Module)
 
 
 ACKNOWLEDGEMENTS

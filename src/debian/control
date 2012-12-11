@@ -10,24 +10,15 @@ Package: cotovia
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: cotovia-lang-gl | cotovia-lang-es, cotovia-voice-iago | cotovia-voice-sabela 
-Description: Text-to-speech system for galician and spanish languages. 
- Cotovia is a bilingual text-to-speech system for Galician and Spanish 
- languages developed by the Multimedia Technologies Group at the 
- University of Vigo (Spain) and a group of researchers of the University 
- of Santiago de Compostela with support from Centro Ramon Pineiro 
- para a Investigacion en Humanidades. 
+Description: Text-to-speech system for Galician and Spanish languages. 
+ Cotovía is a text-to-speech system for Galician and Spanish languages veveloped by the Multimedia Technologies Group at the University of Vigo (Spain) and the Center 'Ramón Piñeiro' for Research in Humanities. 
 
 Package: cotovia-ecess-m1
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: cotovia-lang-gl | cotovia-lang-es 
-Description: Text processing module of cotovia. 
- Cotovia is a bilingual text-to-speech system for Galician and Spanish 
- languages developed by the Multimedia Technologies Group at the 
- University of Vigo (Spain) and a group of researchers of the University 
- of Santiago de Compostela with support from Centro Ramon Pineiro 
- para a Investigacion en Humanidades.
- .
+Description: Text processing module of Cotovia following ECESS specifications. 
+ Cotovía is a text-to-speech system for Galician and Spanish languages veveloped by the Multimedia Technologies Group at the University of Vigo (Spain) and the Center 'Ramón Piñeiro' for Research in Humanities. 
  This program performs the tokenization, POS tagging and phonetic 
  transcription of the input text, following the ECESS specifications for
  the symbolic pre-processing module.
