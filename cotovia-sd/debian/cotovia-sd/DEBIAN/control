@@ -2,7 +2,7 @@ Package: cotovia-sd
 Version: 0.7.1
 Architecture: amd64
 Maintainer: <cotovia@gts.uvigo.es>
-Installed-Size: 156
+Installed-Size: 164
 Depends: speech-dispatcher
 Section: sound
 Priority: extra
