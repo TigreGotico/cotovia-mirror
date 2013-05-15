@@ -6,10 +6,4 @@ for lang in $languages ; do
 sed -ri  's/^#cotovia-sd //' /usr/share/cotovia/data/lang/$lang/abr.txt
 done
 
-# if test "$1" = "remove"; then
-#     sed -i '/sd_cotovia/d' /etc/speech-dispatcher/speechd.conf
-# fi
-# 
-# if test "$1" = "purge"; then
-#     sed -i '/sd_cotovia/d' /etc/speech-dispatcher/speechd.conf
-# fi
+rm -f /usr/share/cotovia/data/*-*

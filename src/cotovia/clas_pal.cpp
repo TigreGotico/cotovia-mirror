@@ -494,19 +494,26 @@ unsigned char cadena_de_signos(char * pal){
 	return CADENA_DE_SIGNOS;
 }
 /*****************************************************************************
- *  void clasificar_palabras(t_frase_separada *elemento_de_frase):  Imos co-  *
- * -llendo cada palabra e clasificandoa. O array de estructuras recorremolo  *
- * co punteiro elemento_de_frase que apunta as estructuras que conteñen nun  *
- * campo a palabra e no campo clas_pal asignaselles o codigo correspondente o*
- * tipo de palabra formal que son. Outro campo e palabra_transformada que se-*
- * -ra un punteiro a unha zona de memoria que conten esa palabra se foi nece-*
- * -sario  procesala para extendela e senon este campo esta a null.          *
+ *  void clasificar_palabras(t_frase_separada *elemento_de_frase, n_caracte- *
+ *  res_frase):  Imos collendo cada palabra e clasificandoa. O array de es-  *
+ *  tructuras recorremolo co punteiro elemento_de_frase que apunta as estruc-*
+ *  turas que conteñen nun campo a palabra e no campo clas_pal asignaselles o*
+ *  codigo correspondente o tipo de palabra formal que son. Outro campo e pa-*
+ *  labra_transformada que sera un punteiro a unha zona de memoria que conten*
+ *  esa palabra se foi necesario procesala para extendela e senon este campo *
+ *  esta a null. Se clas_pal e NUM_ROMANO pero a frase esta formada por un u-*
+ *  nico caracter, cambiase clas_pal a PALABRA_CONSONANTES_MINUSCULAS.       *
  *****************************************************************************/
-void clasificar_palabras(Token * token){
+void clasificar_palabras(Token * token, int n_caracteres_frase){
 
 	while (*token->token) {
 		if (numero_romano(token->token)) {
-			token->clase_pal=NUM_ROMANO;
+			if (n_caracteres_frase==2) {
+				token->clase_pal=PALABRA_CONSONANTES_MINUSCULAS;
+			}
+			else{
+				token->clase_pal=NUM_ROMANO;
+			}
 		}
 		else if (*(token->token+strlen(token->token)-1)=='%'){
 			token->clase_pal=PORCENTUAL;
@@ -537,6 +544,7 @@ void clasificar_palabras(Token * token){
 		
 		token++;
 	}
+
 }
  
 

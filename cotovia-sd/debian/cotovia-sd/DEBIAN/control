@@ -8,4 +8,7 @@ Section: sound
 Priority: extra
 Homepage: http://sourceforge.net/projects/cotovia/
 Description: Cotovia's module for Speech dispatcher.
-  Cotovía is a text-to-speech system for Galician and Spanish languages veveloped by the Multimedia Technologies Group at the University of Vigo (Spain) and the Center 'Ramón Piñeiro' for Research in Humanities.
+ Cotovia is a text-to-speech system for Galician and Spanish
+ languages developed by the Multimedia Technologies Group at the
+ University of Vigo (Spain) and the Center 'Ramon Pineiro' for
+ Research in Humanities.

@@ -76281,6 +76281,7 @@ graxumenta,F,S,graxumento
 graxumentas,F,P,graxumento
 graxumento,M,S
 graxumentos,M,P,graxumento
+grazas,F,P,graza
 graínza,F,S
 graínzas,F,P,graínza
 graíña,F,S

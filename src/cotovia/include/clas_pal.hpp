@@ -45,7 +45,7 @@ short int letra_romana( char l);
 short int numero_romano( char *pal);
 int forma_de_inicial(char  *pal);
 unsigned char cadena_de_signos(char * pal);
-void clasificar_palabras(Token * token);
+void clasificar_palabras(Token * token, int n_caracteres_palabra);
 #define forma_de_horas(n) ( dixito(*n) && (( dixito(*(n+1)) && *(n+2)==':' && dixito(*(n+3)) && dixito(*(n+4)) && !dixito(*(n+5))) || ( *(n+1)==':' && dixito(*(n+2)) && dixito(*(n+3)) && !dixito(*(n+4)))) )
 #endif
  

@@ -2756,10 +2756,29 @@ int Cotovia::procesado_linguistico(void) {
      exemplo pasar un numero a letra. A saida temos xa preparada a variable frase
      procesada.
      Rellenamos o campo pal de cada estructura de frase_separada cunha palabra
-     sen procesar.                                                              */
-  clasificar_palabras(f_tokenizada);
+     sen procesar. 
+                                                             */
 
-  //      if (opciones.entrada_con_timbre)
+
+  clasificar_palabras(f_tokenizada,strlen(frase));
+
+  //fprintf(stdout,"f_tokenizada->clase_pal despois da chamada a clasificar_palabras: %d\n", f_tokenizada->clase_pal);
+
+
+
+/*
+ *  clasificar_palabras(f_tokenizada);
+ *
+ *  if ((f_tokenizada->clase_pal==NUM_ROMANO) && (strlen(frase)==2)){
+ *
+ *        f_tokenizada->clase_pal=SIN_CLASIFICAR;
+ *
+ *  }
+ */
+
+
+
+//      if (opciones.entrada_con_timbre)
   //       memcpy(copia_frase_separada,f_separada,sizeof(f_separada));
   /* Rellenamos o campo clase_pal de cada estructura de frase separada cun
      codigo que identifica a forma da palabra(numero cardinal, ordinal, data,

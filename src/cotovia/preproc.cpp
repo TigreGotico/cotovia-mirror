@@ -546,8 +546,11 @@ void Preproceso::adaptar_abreviatura_non_encontrada(char *pal_abreviada, char *a
 		strcpy(abreviatura_pronunciada, auxiliar);
 	}
 	else {
-		deletrear(pal_aux, abreviatura_pronunciada, idioma);
-		token_a_preprocesar->clase_pal = DELETREO;
+	//	deletrear(pal_aux, abreviatura_pronunciada, idioma);
+	//	token_a_preprocesar->clase_pal = DELETREO;
+
+                adaptacion_por_defecto(abreviatura_pronunciada, pal_aux);
+		token_a_preprocesar->clase_pal=PALABRA_NORMAL;
 	}
 }
 

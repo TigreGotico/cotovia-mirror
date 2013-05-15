@@ -32,13 +32,17 @@ for voice in $voices ; do
     if [ "$voice" = sabela ]; then
 	for lang in $languages ; do
 	    sed -i '/VOICES/ a\
-AddVoice "'$lang'" "FEMALE'$female'" "'$voice'"' /etc/speech-dispatcher/modules/cotovia.conf
+AddVoice "'$lang'" "FEMALE'$female'" "'$voice'-'$lang'"' /etc/speech-dispatcher/modules/cotovia.conf
+cd /usr/share/cotovia/data
+ln -s $voice $voice-$lang
 	done
 	female=$(($female+1))
     else
 	for lang in $languages ; do
 	    sed -i '/VOICES/ a\
-AddVoice "'$lang'" "MALE'$male'" "'$voice'"' /etc/speech-dispatcher/modules/cotovia.conf
+AddVoice "'$lang'" "MALE'$male'" "'$voice'-'$lang'"' /etc/speech-dispatcher/modules/cotovia.conf
+cd /usr/share/cotovia/data
+ln -s $voice $voice-$lang
 	done  
 	male=$(($male+1))
     fi
