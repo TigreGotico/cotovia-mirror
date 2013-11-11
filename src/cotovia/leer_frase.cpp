@@ -60,6 +60,10 @@ ______________________________________________________________________________*/
 #include "interfaz_ficheros.hpp"
 #include "leer_frase.hpp"
 
+#include <fstream>
+#include <iconv.h>
+#include <utf8.h>
+
 char * lee_cadena;
 
 /** 
@@ -628,6 +632,25 @@ void Leer_frase::filtrar_caracteres(char * inicio, char * fin){
 	return;
 }
 
+
+/**
+ * \author cmagui
+ * \remarks Cambia a codificacion da cadea de entrada de UTF-8 a ISO-8859-1.
+ * 
+ * \param entrada
+ * \param lonx 
+ * 
+ * \return 
+ */
+int Leer_frase::texto_a_ISO_Latin1(char * entrada, size_t lonx){
+	iconv_t conv = iconv_open("ISO-8859-1","UTF-8"); 
+	iconv(conv, &entrada, &lonx, &entrada, &lonx);
+	iconv_close(conv);
+	return 1;
+
+}
+
+
 /**
  * \author fmendez
  * \brief .
@@ -686,6 +709,16 @@ int Leer_frase::leer_frase(char * entrada, char * frase, bool &ultima){
 				}
 			}
 			lonx_arqui=fread(texto,1,LONX_BUFER_TEXTO-1,fent);
+
+			/* Comprobamos se a codificacion do texto e UTF-8 */
+			if (utf8::is_valid(texto,texto + strlen(texto))){
+				fprintf(stderr,"O ficheiro é UTF-8\n");
+				texto_a_ISO_Latin1(texto, size_t(LONX_BUFER_TEXTO));
+			}
+
+			else 
+				fprintf(stderr, "O ficheiro non é UTF-8\n");				
+
 		}
 		else {
 			lee_cadena=entrada;
@@ -697,12 +730,23 @@ int Leer_frase::leer_frase(char * entrada, char * frase, bool &ultima){
 				lonx_arqui=LONX_BUFER_TEXTO-1;
 				lee_cadena+=LONX_BUFER_TEXTO-1;
 			}
+
+			/* Comprobamos se a codificacion do texto e UTF-8 */		
+			if (utf8::is_valid(texto,texto + strlen(texto))){
+				fprintf(stderr,"O texto é UTF-8\n");
+				texto_a_ISO_Latin1(texto, size_t(LONX_BUFER_TEXTO));
+			}
+
+			else 
+				fprintf(stderr, "O texto non é UTF-8\n");
+
 		}
 		*(texto+lonx_arqui)=0;
 		recorre_texto=texto;
 		if (lonx_arqui<LONX_BUFER_TEXTO-1) {
 			arquivo_totalmente_leido=true;
 		}
+
 		filtrar_caracteres(texto,texto+lonx_arqui);
 	}
 
@@ -887,6 +931,7 @@ int Leer_frase::leer_frase(char * entrada, char * frase, bool &ultima){
 	/* unha vez que se detectou un fin de frase corrense os caracteres inutiles
 	   que poden ser tabuladores, espacios, saltos de linea, etc                  */
 	} while (!fin); /* "fin" a 1 significa fin de frase. */
+
 	return OK;
 }
 

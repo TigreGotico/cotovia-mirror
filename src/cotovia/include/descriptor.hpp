@@ -660,6 +660,13 @@ próximo se añadan nuevos niveles.  */
   //      float potencia_final;                        // Potencia al final de la unidad.
 #endif
 
+//HTS
+
+
+  char silaba_hts[LONX_MAX_PAL_SIL_E_ACENTUADA]; //para HTS
+  t_frase_separada * palsep;
+
+
   Vector_descriptor_objetivo();
 
   Vector_descriptor_objetivo(const Vector_descriptor_objetivo &origen);

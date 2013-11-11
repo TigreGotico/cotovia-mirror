@@ -74,6 +74,7 @@ class Preproceso : public Interfaz {
 		void transcribe_cardinal_ou_ordinal(short int tip,int num,char xenero_do_numero,
 				char * numero_pronunciado, char por_sin_acento);
 		void transformacion_de_pal_empeza_maiusculas(t_palabra_proc pal_pronunciada, t_palabra pal);
+        void transformacion_de_contraccion(t_palabra_proc pal_pronunciada, t_palabra pal);
 		void transformacion_de_ordinal(t_palabra_proc numero_pronunciado,t_palabra num, unsigned char xen);
 		void centos(char *num,char xenero_do_numero,t_palabra_proc numero_pronunciado);
 		void miles(char *num,char xenero_do_numero, t_palabra_proc numero_pronunciado);

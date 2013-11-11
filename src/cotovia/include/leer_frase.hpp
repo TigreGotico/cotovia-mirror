@@ -37,6 +37,7 @@ ______________________________________________________________________________*/
 
 
 #include "interfaz_ficheros.hpp"
+
 /**
  * \class Leer_frase
  * 
@@ -95,6 +96,8 @@ class Leer_frase : public Interfaz {
 		short int comprobar_se_carac_antes_salto_linea_permiten_fin_de_frase( char *axu);
 		char *cargar_bufer_de_arquivo( char *pos_actual_texto); ///< Lee un trozo del fichero de entrada al buffer.
 		void filtrar_caracteres ( char * inicio, char * fin); ///< Filtra caracteres extraños.
+		bool arquivo_utf8_valido(const char* nome_ficheiro);
+		int texto_a_ISO_Latin1(char * entrada, size_t lonx);
 
 	public:
 

@@ -201,7 +201,7 @@ Crea_vectores_descriptor::~Crea_vectores_descriptor() {
 #ifndef _GRUPOS_ACENTUALES
 
 /**
- * Función:   inicializa_calculo_posicion_y_tonicidad                            
+ * Función:   inicializa_calculo_posicion_y_tonicidad
  * \remarks	  Inicia los valores de las variables fragmentos_entre_pausas y      
  *            fragmento_actual. Se emplea al inicio de cada frase.               
  */
@@ -219,10 +219,10 @@ void Crea_vectores_descriptor::inicializa_calculo_posicion_y_tonicidad() {
 }
 
 /**
- * Función:   reinicia_variables_posicion_y_tonicidad                              
- * \remarks   Inicia los valores del resto de las variables estáticas relacionadas 
- *            con el cálculo de la posición y la tonicidad. Se diferencia de la    
- *            función anterior en que a ésta hay que llamarla al inicio de cada    
+ * Función:   reinicia_variables_posicion_y_tonicidad
+ * \remarks   Inicia los valores del resto de las variables estáticas relacionadas
+ *            con el cálculo de la posición y la tonicidad. Se diferencia de la
+ *            función anterior en que a ésta hay que llamarla al inicio de cada
  *            grupo entre pausas.                                                  
  */
 
@@ -249,9 +249,9 @@ void Crea_vectores_descriptor::reinicia_variables_posicion_y_tonicidad() {
   defined(_CALCULA_DATOS_MODELO_ENERGIA)
 
 /**
- * Función:   reinicia_variables_posicion_silabica                                 
- * \remarks   Inicia los valores de las variables relacionadas con la posición     
- *            silábica dentro del grupo entre pausas.                              
+ * Función:   reinicia_variables_posicion_silabica
+ * \remarks   Inicia los valores de las variables relacionadas con la posición
+ *            silábica dentro del grupo entre pausas.
  */
 
 void Crea_vectores_descriptor::reinicia_variables_posicion_silabica() {
@@ -288,7 +288,7 @@ void crea_nombre_fichero_sonido(char nombre_salida[]) {
 }
 
 /**
- * Función:   construye_nombre_sfs                                                 
+ * Función:   construye_nombre_sfs
  * Entrada y salida:                                                               
  *          - cadena: cadena con la ruta al fichero de sonido.                     
  * \remarks Objetivo:  Crear el nombre del fichero .sfs, para generar el script de errores  
@@ -319,46 +319,46 @@ void Crea_vectores_descriptor::construye_nombre_sfs(char **cadena) {
 #if defined(_SCRIPT)
 
 /**
- * Función:   crea_vectores_descriptor                                                       
- * Versión:   entrena_corpus.                                                                
+ * Función:   crea_vectores_descriptor
+ * Versión:   entrena_corpus.
  * \remarks Entrada:
- *			- frase_separada: cadena que contiene la información de cada palabra procesada.  
- *            Se emplea para obtener la información de palabra contexto y tipo de frase.     
- *          - frase_prosodica: cadena en la que se encuentra la información de cada fonema   
+ *			- frase_separada: cadena que contiene la información de cada palabra procesada.
+ *            Se emplea para obtener la información de palabra contexto y tipo de frase.
+ *          - frase_prosodica: cadena en la que se encuentra la información de cada fonema
  *            por separado.                                                                  
- *          - frase_en_grupos: división en grupos de la frase de entrada.                    
- *          - frase_fonetica: cadena en la que se encuentra la información silábica, de      
+ *          - frase_en_grupos: división en grupos de la frase de entrada.
+ *          - frase_fonetica: cadena en la que se encuentra la información silábica, de
  *            tonicidad y de pausas.                                                         
- *          - frase_sintagmada: división en sintagmas de la frase de entrada.                
- *          - nombre_fichero_sfs: nombre del fichero sfs, para la posterior corrección  de   
+ *          - frase_sintagmada: división en sintagmas de la frase de entrada.
+ *          - nombre_fichero_sfs: nombre del fichero sfs, para la posterior corrección  de
  *            errores.                                                                       
- *          - fichero_fonemas: fichero en el que se encuentra la información del etiquetado  
+ *          - fichero_fonemas: fichero en el que se encuentra la información del etiquetado
  *            temporal de los fonemas.                                                       
- *          - fichero_marcas: fichero en el que se encuentra la información de las marcas de 
+ *          - fichero_marcas: fichero en el que se encuentra la información de las marcas de
  *            pitch.                                                                         
- *          - fichero_sonido: fichero de datos de audio "en bruto", empleado para el cálculo 
- *            de la energía de cada fonema.                                                  
- *          - fichero_cepstrum: fichero con la información de los coeficientes cepstrales    
+ *          - fichero_sonido: fichero de datos de audio "en bruto", empleado para el cálculo
+ *            de la energía de cada fonema.
+ *          - fichero_cepstrum: fichero con la información de los coeficientes cepstrales
  *            calculados en ventanas centradas en las marcas de pitch del fichero.           
- *          - fichero_cepstrum_bin: fichero con la información de los coeficientes           
+ *          - fichero_cepstrum_bin: fichero con la información de los coeficientes
  *            cepstrales calculados cada 0.008 milisegundos.
  *			- frecuencia_muestreo: frecuencia de muestreo de los ficheros de sonido.		 
- *			- numero_de_elementos_de_frase_separada: número de elementos de la variable		 
+ *			- numero_de_elementos_de_frase_separada: número de elementos de la variable
  *			  frase_separada.																 
- *			- frecuencia_minima_locutor: frecuencia fundamental mínima admitida para ese	 
+ *			- frecuencia_minima_locutor: frecuencia fundamental mínima admitida para ese
  *			  locutor.																		 
- *			- frecuencia_maxima_locutor: frecuencia fundamental máxima admitida para ese	 
+ *			- frecuencia_maxima_locutor: frecuencia fundamental máxima admitida para ese
  *			  locutor.
  *			- correccion_manual: si es cero, el corpus no fue corregido manualmente.																		 *                      - nombre_fichero_origen_configuracion: nombre del fichero de origen de unidades, tal y como aparece en el fichero de configuración.
  *	\remarks Salida:
- *			- fichero_bin: fichero en el que se escribe la información de los vectores       
+ *			- fichero_bin: fichero en el que se escribe la información de los vectores
  *            descriptor.                                                                    
  * \remarks Valor devuelto:                                                                           
- *          - En ausencia de error devuelve un 0. Si hay algún fallo en la comprobación del  
+ *          - En ausencia de error devuelve un 0. Si hay algún fallo en la comprobación del
  *            fichero de marcas, devuelve un 2. Si es en el fichero de sonido, un 3.         
- * \remarks Objetivo:  Calcula las características de los fonemas que se encuentran en el corpus,     
+ * \remarks Objetivo:  Calcula las características de los fonemas que se encuentran en el corpus,
  *            para su posterior uso en el modo de funcionamiento normal del programa, es     
- *            decir, en la síntesis.                                                         
+ *            decir, en la síntesis.
  */
 
 int Crea_vectores_descriptor::crea_vectores_descriptor(t_frase_separada *frase_separada, t_prosodia *frase_prosodica, char *frase_fonetica, t_frase_en_grupos *frase_en_grupos, char * locutores, t_frase_sintagmada *frase_sintagmada, char *fichero_origen, char *nombre_fonemas, char *nombre_txt, char *nombre_txt_morf, char *nombre_fichero_sfs, FILE *fichero_fonemas, FILE *fichero_marcas, FILE *fichero_sonido, FILE *fichero_cepstrum, FILE *fichero_cepstrum_bin, int frecuencia_muestreo, float frecuencia_minima_locutor, float frecuencia_maxima_locutor, int numero_de_elementos_de_frase_separada, FILE *fichero_bin, int correccion_manual, char *nombre_fichero_origen_configuracion) {
@@ -1170,35 +1170,35 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(t_frase_separada *frase_s
 #ifdef _CALCULA_DATOS_MODELO_ENERGIA
 
 /**
- * Función:   calcula_datos_modelo_energia                                                   
+ * Función:   calcula_datos_modelo_energia
  * \remarks Entrada:
- *			- frase_separada: cadena que contiene la información de cada palabra procesada.  
- *            Se emplea para obtener la información de palabra contexto y tipo de frase.     
- *          - frase_prosodica: cadena en la que se encuentra la información de cada fonema   
+ *			- frase_separada: cadena que contiene la información de cada palabra procesada.
+ *            Se emplea para obtener la información de palabra contexto y tipo de frase.
+ *          - frase_prosodica: cadena en la que se encuentra la información de cada fonema
  *            por separado.                                                                  
- *          - frase_en_grupos: división en grupos de la frase de entrada.                    
- *          - frase_fonetica: cadena en la que se encuentra la información silábica, de      
+ *          - frase_en_grupos: división en grupos de la frase de entrada.
+ *          - frase_fonetica: cadena en la que se encuentra la información silábica, de
  *            tonicidad y de pausas.                                                         
- *          - frase_sintagmada: división en sintagmas de la frase de entrada.                
- *          - nombre_fichero_sfs: nombre del fichero sfs, para la posterior corrección  de   
+ *          - frase_sintagmada: división en sintagmas de la frase de entrada.
+ *          - nombre_fichero_sfs: nombre del fichero sfs, para la posterior corrección  de
  *            errores.                                                                       
- *          - fichero_fonemas: fichero en el que se encuentra la información del etiquetado  
+ *          - fichero_fonemas: fichero en el que se encuentra la información del etiquetado
  *            temporal de los fonemas.                                                       
- *          - fichero_sonido: fichero de datos de audio "en bruto", empleado para el cálculo 
- *            de la energía de cada fonema.                                                  
+ *          - fichero_sonido: fichero de datos de audio "en bruto", empleado para el cálculo
+ *            de la energía de cada fonema.
  *			- frecuencia_muestreo: frecuencia de muestreo del fichero de sonido.			 
- *			- numero_de_elementos_de_frase_separada: número de elementos de la variable		 
+ *			- numero_de_elementos_de_frase_separada: número de elementos de la variable
  *			  frase_separada.
  *			- correccion_manual: si vale cero, el corpus no se revisó manualmente.
  *	\remarks Salida:
  *			- cadena_datos_energia: cadena de estructuras en las que se almacena la 		 
- *			  información para el modelo de estimación de la energía.						 
- *			- numero_fonemas_energia: número de elementos de la cadena anterior.			 
+ *			  información para el modelo de estimación de la energía.
+ *			- numero_fonemas_energia: número de elementos de la cadena anterior.
  * \remarks Valor devuelto:                                                                           
- *          - En ausencia de error devuelve un 0. Si hay algún fallo en la comprobación del  
+ *          - En ausencia de error devuelve un 0. Si hay algún fallo en la comprobación del
  *            fichero de marcas, devuelve un 2. Si es en el fichero de sonido, un 3.         
- * \remarks Objetivo:  Obtiene la información para el modelo de estimación de la energía basado en    
- *			  regresión lineal.                                                              
+ * \remarks Objetivo:  Obtiene la información para el modelo de estimación de la energía basado en
+ *			  regresión lineal.
  */
 
 
@@ -1738,21 +1738,21 @@ int Crea_vectores_descriptor::calcula_datos_modelo_energia(t_frase_separada *fra
 #ifdef _SCRIPT_DURACION
 
 /**
- * Función:   calcula_parametros_duracion                                                    
- * Versión:   info_duracion.                                                                 
+ * Función:   calcula_parametros_duracion
+ * Versión:   info_duracion.
  * \remarks Entrada:
- *			- frase_separada: cadena que contiene la información de cada palabra procesada.  
- *            Se emplea para obtener la información de palabra contexto y tipo de frase.     
- *          - frase_prosodica: cadena en la que se encuentra la información de cada fonema   
+ *			- frase_separada: cadena que contiene la información de cada palabra procesada.
+ *            Se emplea para obtener la información de palabra contexto y tipo de frase.
+ *          - frase_prosodica: cadena en la que se encuentra la información de cada fonema
  *            por separado.                                                                  
- *          - frase_en_grupos: división en grupos de la frase de entrada.                    
- *          - frase_fonetica: cadena en la que se encuentra la información silábica, de      
+ *          - frase_en_grupos: división en grupos de la frase de entrada.
+ *          - frase_fonetica: cadena en la que se encuentra la información silábica, de
  *            tonicidad y de pausas.                                                         
- *          - frase_sintagmada: división en sintagmas de la frase de entrada.                
+ *          - frase_sintagmada: división en sintagmas de la frase de entrada.
  *          - fichero_origen: nombre del fichero de texto en el que se encuentra la unidad.  
- *          - fichero_fonemas: fichero en el que se encuentra la información del etiquetado  
+ *          - fichero_fonemas: fichero en el que se encuentra la información del etiquetado
  *            temporal de los fonemas.                                                       
- *			- numero_de_elementos_de_frase_separada: número de elementos de la variable 	 
+ *			- numero_de_elementos_de_frase_separada: número de elementos de la variable
  *			  frase_separada.
  *			- correccion_manual: si vale 0, el corpus no fue analizado manualmente.									 
  *	\remarks Salida:
@@ -2310,15 +2310,15 @@ int Crea_vectores_descriptor::calcula_parametros_duracion(t_frase_separada *fras
   defined(_CALCULA_DATOS_MODELO_ENERGIA)
 
 /**
- * Función:   cuenta_fonemas_en_silaba                                             
+ * Función:   cuenta_fonemas_en_silaba
  * \remarks Entrada:
- *			- silaba: cadena en la que se encuentra la sílaba cuyo número de       
+ *			- silaba: cadena en la que se encuentra la sílaba cuyo número de
  *            fonemas se desea contar.                                             
  * \remarks Objetivo:  Dado que algunos fonemas se representan por medio de dos caracteres, 
- *            no llega con calcular el tamaño de la cadena para saber su número de 
- *            alófonos. Para solventar ese problema se emplea esta función.        
- * \remarks NOTA:      Esta función sólo produce buenos resultados en el caso de que se     
- *            emplee el código Sampa de Cotovía, en el que los únicos fonemas que  
+ *            no llega con calcular el tamaño de la cadena para saber su número de
+ *            alófonos. Para solventar ese problema se emplea esta función.
+ * \remarks NOTA:      Esta función sólo produce buenos resultados en el caso de que se
+ *            emplee el código Sampa de Cotovía, en el que los únicos fonemas que
  *            se representan con dos caracteres son tS y rr.                       
  */
 
@@ -2351,42 +2351,42 @@ short int cuenta_fonemas_en_silaba(char silaba[]) {
 
 
 /**
- * Función:   calcula_posicion_frase_tonicidad_silabas                             
+ * Función:   calcula_posicion_frase_tonicidad_silabas
  * \remarks Entrada:
- *			- f_fonetica: cadena con la información de tonicidad, sílabas, y       
+ *			- f_fonetica: cadena con la información de tonicidad, sílabas, y
  *            tokens de pausas y proposiciones.                                    
- *          - alof: alófono del que queremos hallar su posición en la frase y      
+ *          - alof: alófono del que queremos hallar su posición en la frase y
  *            tonicidad.                                                           
  *	\remarks Salida:
- *			- posicion: posición del alófono en la frase. Si está antes de la      
- *            primera sílaba tónica (incluida), se considera POSICION_INICIAL.     
+ *			- posicion: posición del alófono en la frase. Si está antes de la
+ *            primera sílaba tónica (incluida), se considera POSICION_INICIAL.
  *            Si está después de la última (incluida), se considera POSICION_FINAL.
  *            En otro caso, se considera POSICION_MEDIA.                           
- *          - tonica: tonicidad del alófono, considerada ésta como algo propio de  
- *            la sílaba, y no de un único fonema de ella. (Tónica -> 1).           
- *          - fonemas_en_silaba: número de fonemas de la sílaba actual.            
- *          - fonemas_en_palabra: número de fonemas de la palabra actual.          
+ *          - tonica: tonicidad del alófono, considerada ésta como algo propio de
+ *            la sílaba, y no de un único fonema de ella. (Tónica -> 1).
+ *          - fonemas_en_silaba: número de fonemas de la sílaba actual.
+ *          - fonemas_en_palabra: número de fonemas de la palabra actual.
  *          - silabas_en_palabra: número de sílabas de la palabra_actual.          *
- *          - posicion_silaba: posición del alófono en la sílaba que lo contiene.  
- *          - posicion_inicio: número de sílabas desde el inicio del grupo entre   
+ *          - posicion_silaba: posición del alófono en la sílaba que lo contiene.
+ *          - posicion_inicio: número de sílabas desde el inicio del grupo entre
  *            pausas.                                                              
- *          - posicion_final: número de sílabas hasta el final del grupo entre     
+ *          - posicion_final: número de sílabas hasta el final del grupo entre
  *            pausas.                                                              
- *          - tonicas_inicio: número de sílabas tónicas desde el inicio del grupo. 
- *          - tonicas_final: número de sílabas tónicas hasta el final del grupo.   
- *          - nueva_silaba: variable que indica cuándo se comienza una nueva       
- *            sílaba. (comienzo de sílaba -> 1; otro caso -> 0)                   
+ *          - tonicas_inicio: número de sílabas tónicas desde el inicio del grupo.
+ *          - tonicas_final: número de sílabas tónicas hasta el final del grupo.
+ *          - nueva_silaba: variable que indica cuándo se comienza una nueva
+ *            sílaba. (comienzo de sílaba -> 1; otro caso -> 0)
  *          - fin_silaba: equivalente al anterior, pero relativo al final de la    
- *            sílaba.                                                              
+ *            sílaba.
  *          - silaba: sílaba actual. Su valor sólo es real cuando nueva_silaba == 1
- *          - frontera_inicial: indica la frontera al inicio del fonema (según la clasificación al inicio de descriptor.hpp).    
+ *          - frontera_inicial: indica la frontera al inicio del fonema (según la clasificación al inicio de descriptor.hpp).
  *          - frontera_final: indica la frontera al final del fonema (según la clasificación al inicio de descriptor.hpp).
  *	    - final_frase: indica si está al final de la oración.		*           - indice_silaba: indice de la sílaba en la que se encuentra el fonema (en relación a las sílabas de la palabra)
 		   
  * \remarks Valor devuelto:                                                                 
  *          - En ausencia de error, devuelve un 0.                                 
- * \remarks Objetivo:  Calcular las características de tonicidad y posición en la frase de  
- *            cada alófono, así como en la sílaba que lo contiene.                 
+ * \remarks Objetivo:  Calcular las características de tonicidad y posición en la frase de
+ *            cada alófono, así como en la sílaba que lo contiene.
  */
 
 int Crea_vectores_descriptor::calcula_posicion_frase_tonicidad_silabas(char *f_fonetica, char alof[], unsigned char *posicion, unsigned char *tonica, short int *fonemas_en_silaba, short int *fonemas_en_palabra, short int *silabas_en_palabra, short int *posicion_silaba, short int *posicion_inicio, short int *posicion_final, short int *tonicas_inicio, short int *tonicas_final, char *nueva_silaba, char *fin_silaba, char *silaba_actual, char *frontera_inicial, char *frontera_final, char *final_frase, unsigned char *indice_silaba) {
@@ -2692,10 +2692,10 @@ int Crea_vectores_descriptor::calcula_posicion_frase_tonicidad_silabas(char *f_f
 #ifdef _MODO_NORMAL
 
 /**
- * Función:   crea_vectores_descriptor                                                       
- * Versión:   modo_normal.                                                                   
+ * Función:   crea_vectores_descriptor
+ * Versión:   modo_normal.
  * \param	frase_separada: cadena que contiene la información de cada palabra procesada.
- *            Se emplea para obtener la información de palabra contexto y tipo de frase.     
+ *            Se emplea para obtener la información de palabra contexto y tipo de frase.
  * \param	frase_prosodica: cadena en la que se encuentra la información de cada fonema
  *            por separado.
  * \param	frase_en_grupos: división en grupos de la frase de entrada.
@@ -2708,11 +2708,11 @@ int Crea_vectores_descriptor::calcula_posicion_frase_tonicidad_silabas(char *f_f
  * \retval	numero_unidades: número de unidades de la cadena anterior.
  * \retval	acentuales: cadena indexada con la información de los grupos acentuales
  *            objetivo.
- * \retval	numero_acentuales: número de unidades de la cadena anterior.                   
+ * \retval	numero_acentuales: número de unidades de la cadena anterior.
  * \return	En ausencia de error devuelve un 0.
  * \remarks Objetivo:  Calcula las características de los fonemas de frase_prosodica, basándose en las
- *            predicciones de Cotovia. De aquí saldrán las unidades que se considerarán como 
- *            objetivo en el momento de realizar la síntesis.                                
+ *            predicciones de Cotovia. De aquí saldrán las unidades que se considerarán como
+ *            objetivo en el momento de realizar la síntesis.
  */
 
 #ifndef _ESTIMA_ENERGIA_RED_NEURONAL
@@ -2809,7 +2809,10 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
     // acentual.
     int posicion_vocal_fuerte = -1; // Variable empleada para controlar la posición de la vocal fuerte de cada sílaba.
     int almacena_posicion_vocal_fuerte = 0;
-    char silaba[100]; // Variable en la que se almacena la sílaba actual.
+
+    char silaba[LONX_MAX_PAL_SIL_E_ACENTUADA]; // Variable en la que se almacena la sílaba actual.
+    silaba[0]='\0';
+
     unsigned char posicion_alofono_tonico = 0; // Posición del alófono en el que recae el acento.
     unsigned char indice_silaba_palabra; // Índice de la sílaba en la que se encuentra el fonema (con respecto a la palabra)
     char nueva_silaba; // Variable que indica el comienzo de una nueva sílaba.
@@ -3523,6 +3526,11 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 	nuevo_vector.anhade_frecuencia(esc_pitch*media_pitch, esc_pitch*correcaminos->pitch1, esc_pitch*correcaminos->pitch3);
 
 	nuevo_vector.anhade_duracion(duracion1, duracion2);
+
+	strcpy(nuevo_vector.silaba_hts, silaba); // HTS
+    nuevo_vector.palsep = palabra_separada; 
+   
+
 	vectores.push_back(nuevo_vector);
 	++*numero_unidades;
 
@@ -3687,7 +3695,7 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
   /**
    * Función:   calcula_estadística_1_0                                            * \remarks Entrada:
-   *			- frase_prosodica: cadena en la que se encuentra la información de cada fonema   
+   *			- frase_prosodica: cadena en la que se encuentra la información de cada fonema
    *            por separado.
    *	\remarks Salida:
    *          - fonema_est: objeto en el que se almacena la información de las ocurrencias de fonemas.
@@ -3755,30 +3763,30 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
 
   /**
-   * Función:   calcula_estadistica_2_0                                                        
+   * Función:   calcula_estadistica_2_0
    * \remarks Entrada:
-   *			- frase_separada: cadena que contiene la información de cada palabra procesada.  
-   *            Se emplea para obtener la información de palabra contexto y tipo de frase.     
-   *          - frase_prosodica: cadena en la que se encuentra la información de cada fonema   
+   *			- frase_separada: cadena que contiene la información de cada palabra procesada.
+   *            Se emplea para obtener la información de palabra contexto y tipo de frase.
+   *          - frase_prosodica: cadena en la que se encuentra la información de cada fonema
    *            por separado.                                                                  
-   *          - frase_en_grupos: división en grupos de la frase de entrada.                    
-   *          - frase_fonetica: cadena en la que se encuentra la información silábica, de      
+   *          - frase_en_grupos: división en grupos de la frase de entrada.
+   *          - frase_fonetica: cadena en la que se encuentra la información silábica, de
    *            tonicidad y de pausas.                                                         
    *          - frase_sintagmada: división en sintagmas de la frase de entrada.
    *			- numero_de_elementos_de_frase_separada: número de elementos de la variable
    *			  frase_separada.
    *	\remarks Salida:
-   *			- semifonema_izquierdo_est: objeto en el que se almacena la información de las   
+   *			- semifonema_izquierdo_est: objeto en el que se almacena la información de las
    *            ocurrencias de semifonemas con contexto por la izquierda.                      
-   *          - semifonema_derecho_est: análogo al anterior, pero con el contexto por la       
+   *          - semifonema_derecho_est: análogo al anterior, pero con el contexto por la
    *            derecha.                                                                       
-   *          - trifonema_est: igual, pero con información de trifonemas.                      
+   *          - trifonema_est: igual, pero con información de trifonemas.
    * \remarks Valor devuelto:                                                                           
    *          - En ausencia de error devuelve un 0.                                            
-   * \remarks Objetivo:  Calcula el número de ocurrencias de semifonemas con contexto por la derecha,   
+   * \remarks Objetivo:  Calcula el número de ocurrencias de semifonemas con contexto por la derecha,
    *            por la izquierda, y trifonemas.                                                
-   * \remarks NOTA:      En esta versión ya se incluye la información de tonicidad, posición en la      
-   *            frase y tipo de proposición.                                                   
+   * \remarks NOTA:      En esta versión ya se incluye la información de tonicidad, posición en la
+   *            frase y tipo de proposición.
    */
 
   int Crea_vectores_descriptor::calcula_estadistica_2_0(t_frase_separada *frase_separada, t_prosodia *frase_prosodica,
@@ -4024,36 +4032,36 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 #ifdef _GENERA_CORPUS
 
   /**
-   * Función:   genera_corpus                                                                  
+   * Función:   genera_corpus
    * \remarks Entrada:
    *			- frase_extraida: frase original.                                                
-   *          - frase_separada: cadena que contiene la información de cada palabra procesada.  
-   *            Se emplea para obtener la información de palabra contexto y tipo de frase.     
-   *          - frase_prosodica: cadena en la que se encuentra la información de cada fonema   
+   *          - frase_separada: cadena que contiene la información de cada palabra procesada.
+   *            Se emplea para obtener la información de palabra contexto y tipo de frase.
+   *          - frase_prosodica: cadena en la que se encuentra la información de cada fonema
    *            por separado.                                                                  
-   *          - frase_en_grupos: división en grupos de la frase de entrada.                    
-   *          - frase_fonetica: cadena en la que se encuentra la información silábica, de      
+   *          - frase_en_grupos: división en grupos de la frase de entrada.
+   *          - frase_fonetica: cadena en la que se encuentra la información silábica, de
    *            tonicidad y de pausas.                                                         
-   *          - frase_sintagmada: división en sintagmas de la frase de entrada.                
+   *          - frase_sintagmada: división en sintagmas de la frase de entrada.
    *	\remarks Salida:
-   *			- semifonema_izquierdo_est: objeto en el que se almacena la información de las   
+   *			- semifonema_izquierdo_est: objeto en el que se almacena la información de las
    *            ocurrencias de semifonemas con contexto por la izquierda.                      
-   *          - semifonema_derecho_est: análogo al anterior, pero con el contexto por la       
+   *          - semifonema_derecho_est: análogo al anterior, pero con el contexto por la
    *            derecha.                                                                       
-   *          - trifonema_est: igual, pero con información de trifonemas.                      
-   *          - fichero_corpus: fichero en el que se van añadiendo las frases seleccionadas.   
-   *          - fichero_rechazo: fichero en el que se incluyen aquellas frases que no tenían   
+   *          - trifonema_est: igual, pero con información de trifonemas.
+   *          - fichero_corpus: fichero en el que se van añadiendo las frases seleccionadas.
+   *          - fichero_rechazo: fichero en el que se incluyen aquellas frases que no tenían
    *            ninguna unidad entre las buscadas.                                             
    * \remarks Entrada y Salida:                                                                         
    *          - lista_unidades: objeto Estadistica en el que se recogen aquellas unidades que  
    *            se desea encontrar.                                                            
    * \remarks Valor devuelto:                                                                           
    *          - En ausencia de error devuelve un 0.                                            
-   * \remarks Objetivo:  Realiza las mismas funciones que calcula_estadistica_2_0, pero además          
+   * \remarks Objetivo:  Realiza las mismas funciones que calcula_estadistica_2_0, pero además
    *            comprueba que en la frase de entrada haya alguna de las unidades que se le     
-   *            en la cadena de entrada lista_unidades. Si sí que las hay, añade al fichero    
-   *            fichero_corpus la frase, y actualiza el número de ocurrencias, y si no, la     
-   *            añade al fichero fichero_rechazo, ya deja las estadísticas como estaban.       
+   *            en la cadena de entrada lista_unidades. Si sí que las hay, añade al fichero
+   *            fichero_corpus la frase, y actualiza el número de ocurrencias, y si no, la
+   *            añade al fichero fichero_rechazo, ya deja las estadísticas como estaban.
    */
 
   int Crea_vectores_descriptor::genera_corpus(char *frase_extraida, t_frase_separada *frase_separada, t_prosodia *frase_prosodica,
@@ -4342,19 +4350,19 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
 
   /**
-   * Función:   inicia_ciclo_transformada                                                    
+   * Función:   inicia_ciclo_transformada
    * \remarks Entrada:
    *			- palabra_transformada: palabra extendida, tal y como nos la da Cotovia. Por   
-   *            ejemplo, si Cotovia lee 225, aquí vendría "douscentos vintecinco".           
-   *          - numero_palabra: posición de la palabra que queremos extraer de la variable   
+   *            ejemplo, si Cotovia lee 225, aquí vendría "douscentos vintecinco".
+   *          - numero_palabra: posición de la palabra que queremos extraer de la variable
    *            anterior.                                                                    
    *	\remarks Salida:
-   *			- salida: palabra contenida en palabra_transformada, en la posición indicada   
+   *			- salida: palabra contenida en palabra_transformada, en la posición indicada
    *            por numero_palabra.                                                          
    * \remarks Valor devuelto:                                                                         
-   *          - Si es la última palabra contenida en pal_transformada, se devuelve un 0. En  
-   *            caso contrario, se devuelve un 1. Si se produce algún error, devuelve -1.    
-   * \remarks Objetivo:  Dado que cada elemento de frase_separada se puede desdoblar en una o más     
+   *          - Si es la última palabra contenida en pal_transformada, se devuelve un 0. En
+   *            caso contrario, se devuelve un 1. Si se produce algún error, devuelve -1.
+   * \remarks Objetivo:  Dado que cada elemento de frase_separada se puede desdoblar en una o más
    *            palabras (como en el ejemplo de arriba), en ocasiones hay que sacar la       
    *            palabra contexto a la que pertenece un fonema del campo palabra_transformada.
    */
@@ -4425,16 +4433,16 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
   }
 
   /**
-   * Función:   halla_tipo_de_frase                                                 
+   * Función:   halla_tipo_de_frase
    * \remarks Entrada:
-   *			- codigo: tipo de tonema al que pertenece la palabra, según lo        
+   *			- codigo: tipo de tonema al que pertenece la palabra, según lo
    *            especificado en el archivo tip_var.h. (en "Defines de  categorias   
    *            de como son as pausas e as entonacions).                            
    * \remarks Valor devuelto:                                                                
    *          - Devuelve uno de los cuatro tipos de frases considerados hasta el    
    *            momento: FRASE_ENUNCIATIVA, FRASE_EXCLAMATIVA, FRASE_INTERROGATIVA  
    *            y FRASE_INACABADA.                                                  
-   * \remarks Objetivo:  Según el código de entrada, se determina el tipo de frase.          
+   * \remarks Objetivo:  Según el código de entrada, se determina el tipo de frase.
    */
 
   unsigned char halla_tipo_de_frase(unsigned char codigo) {
@@ -4454,15 +4462,15 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
 
   /**
-   * Función:   palabra_solo_signos_puntuacion                                  
+   * Función:   palabra_solo_signos_puntuacion
    * \remarks Entrada:
-   *			- palabra: palabra de la que se quiere comprobar si sólo está     
-   *            formada por signos de puntuación.                               
+   *			- palabra: palabra de la que se quiere comprobar si sólo está
+   *            formada por signos de puntuación.
    * \remarks Valor devuelto:                                                            
-   *          - Si sólo está compuesta por signos de puntuación, devuelve un 1. 
+   *          - Si sólo está compuesta por signos de puntuación, devuelve un 1.
    * \remarks NOTA:
-   *			- Esta función no sería necesaria si Cotovía hiciese un análisis  
-   *            bueno de la categoría de las palabras. En otras palabras, es    
+   *			- Esta función no sería necesaria si Cotovía hiciese un análisis
+   *            bueno de la categoría de las palabras. En otras palabras, es
    *            una chapuza.                                                    
    */
 
@@ -4492,23 +4500,23 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 #ifndef _GRUPOS_ACENTUALES
 
   /**
-   * Función:   calcula_posicion_frase_y_tonicidad                                   
+   * Función:   calcula_posicion_frase_y_tonicidad
    * \remarks Entrada:
-   *			- f_fonetica: cadena con la información de tonicidad, sílabas, y       
+   *			- f_fonetica: cadena con la información de tonicidad, sílabas, y
    *            tokens de pausas y proposiciones.                                    
-   *          - alof: alófono del que queremos hallar su posición en la frase y      
+   *          - alof: alófono del que queremos hallar su posición en la frase y
    *            tonicidad.                                                           
    *	\remarks Salida:
-   *			- posicion: posición del alófono en la frase. Si está antes de la      
-   *            primera sílaba tónica (incluida), se considera POSICION_INICIAL.     
+   *			- posicion: posición del alófono en la frase. Si está antes de la
+   *            primera sílaba tónica (incluida), se considera POSICION_INICIAL.
    *            Si está después de la última (incluida), se considera POSICION_FINAL.
    *            En otro caso, se considera POSICION_MEDIA.                           
-   *          - tonica: tonicidad del alófono, considerada ésta como algo propio de  
-   *            la sílaba, y no de un único fonema de ella. (Tónica -> 1).           
+   *          - tonica: tonicidad del alófono, considerada ésta como algo propio de
+   *            la sílaba, y no de un único fonema de ella. (Tónica -> 1).
    * \remarks Valor devuelto:                                                                 
    *          - En ausencia de error, devuelve un 0.                                 
-   * \remarks Objetivo:  Calcular las características de tonicidad y posición en la frase de  
-   *            cada alófono.                                                        
+   * \remarks Objetivo:  Calcular las características de tonicidad y posición en la frase de
+   *            cada alófono.
    */
 
   int Crea_vectores_descriptor::calcula_posicion_frase_y_tonicidad(char *f_fonetica, char alof[],
@@ -4595,14 +4603,14 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
 
   /**
-   * Función:   extrae_frase                                                       
+   * Función:   extrae_frase
    * \remarks Entrada:
    *			- frase_total: cadena con la frase completa.                         
    * \remarks Valor devuelto:                                                               
-   *          - En ausencia de error devuelve el fragmento de cadena de posición   
-   *            fragmento_actual, eliminándole los tokens de pausa y proposición.  
+   *          - En ausencia de error devuelve el fragmento de cadena de posición
+   *            fragmento_actual, eliminándole los tokens de pausa y proposición.
    * \remarks Objetivo:  Extraer las porciones de frase entre pausas, dejando sólo la infor-
-   *            mación de tonicidad y silabificación.                              
+   *            mación de tonicidad y silabificación.
    */
 
   char *Crea_vectores_descriptor::extrae_frase(char *frase_total) {
@@ -4780,15 +4788,15 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
   defined(_GRUPOS_ACENTUALES)
 
   /**
-   * Función:   extrae_frase_y_posiciones                                          
+   * Función:   extrae_frase_y_posiciones
    * \remarks Entrada:
    *			- frase_total: cadena con la frase completa.                         
    * \remarks Valor devuelto:                                                               
-   *          - En ausencia de error devuelve el fragmento de cadena de posición   
-   *            fragmento_actual, eliminándole los tokens de pausa y proposición.  
+   *          - En ausencia de error devuelve el fragmento de cadena de posición
+   *            fragmento_actual, eliminándole los tokens de pausa y proposición.
    * \remarks Objetivo:  Extraer las porciones de frase entre pausas, dejando sólo la infor-
-   *            mación de tonicidad y división en sílabas. Además, calcula el      
-   *            número de sílabas totales y tónicas del grupo.                     
+   *            mación de tonicidad y división en sílabas. Además, calcula el
+   *            número de sílabas totales y tónicas del grupo.
    */
 
   char *Crea_vectores_descriptor::extrae_frase_y_posiciones(char *frase_total) {
@@ -5097,15 +5105,15 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 #endif
 
   /**
-   * Función:   frase_solo_signos_de_puntuacion                              
+   * Función:   frase_solo_signos_de_puntuacion
    * \remarks Entrada:
-   *			- frase: cadena en la que se recoge la información de cada     
+   *			- frase: cadena en la que se recoge la información de cada
    *            palabra por separado.                                        
    * \remarks Valor devuelto:                                                         
-   *          - Si la cadena consta de sólo signos de puntuación, devuelve   
+   *          - Si la cadena consta de sólo signos de puntuación, devuelve
    *            un 1.                                                        
-   * \remarks Objetivo:  Comprobar si la frase de entrada consta únicamente de signos 
-   *            de puntuación.                                               
+   * \remarks Objetivo:  Comprobar si la frase de entrada consta únicamente de signos
+   *            de puntuación.
    */
 
   int frase_solo_signos_de_puntuacion(t_frase_separada *frase) {
@@ -5125,15 +5133,15 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
   }
 
   /**
-   * Función:   cuenta_numero_palabras		                               
+   * Función:   cuenta_numero_palabras
    * \remarks Entrada:
-   *			- frase: cadena en la que se recoge la información de cada     
+   *			- frase: cadena en la que se recoge la información de cada
    *            palabra por separado.                                        
    * \remarks Valor devuelto:                                                         
-   *          - Si la cadena consta de sólo signos de puntuación, devuelve   
+   *          - Si la cadena consta de sólo signos de puntuación, devuelve
    *            un 1.                                                        
-   * \remarks Objetivo:  Comprobar si la frase de entrada consta únicamente de signos 
-   *            de puntuación.                                               
+   * \remarks Objetivo:  Comprobar si la frase de entrada consta únicamente de signos
+   *            de puntuación.
    */
 
   int cuenta_numero_palabras(t_frase_separada *frase) {
@@ -5158,41 +5166,41 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 #ifdef _SECUENCIAS_FONETICAS
 
   /**
-   * Función:   lee_estructuras_foneticas                                               
+   * Función:   lee_estructuras_foneticas
    * \remarks Entrada:
    *			- fichero: fichero de texto en el que se encuentran las estructuras       
-   *            fonéticas que se desea buscar, según el formato siguiente, por líneas:  
-   *            * Número de estructuras en la zona estacionaria \t Número de	 		  
-   *			  estructuras en la zona de transición		                              
-   *            * Número de ocurrencias por frase, es decir, número de fonemas y        
-   *            transiciones entre fonemas buscados que se desea que, como mínimo,      
+   *            fonéticas que se desea buscar, según el formato siguiente, por líneas:
+   *            * Número de estructuras en la zona estacionaria \t Número de
+   *			  estructuras en la zona de transición
+   *            * Número de ocurrencias por frase, es decir, número de fonemas y
+   *            transiciones entre fonemas buscados que se desea que, como mínimo,
    *            aparezcan en cada frase seleccionada.                                   
-   *            * Número mínimo de palabras en la frase.                                
-   *            * Número máximo de palabras en la frase.                                
-   *            * Por cada estructura (en la misma línea, separado por tabuladores):    
+   *            * Número mínimo de palabras en la frase.
+   *            * Número máximo de palabras en la frase.
+   *            * Por cada estructura (en la misma línea, separado por tabuladores):
    *               - Clase del primer fonema.                                           
-   *               - Clase del segundo (si la unión es por la parte de transición).     
+   *               - Clase del segundo (si la unión es por la parte de transición).
    *	\remarks Salida:
-   *			- *fonemas_estacionario: cadena indexada con la información de los        
+   *			- *fonemas_estacionario: cadena indexada con la información de los
    *            fonemas buscados.                                                       
-   *          - numero_fonemas_estacionario: número de estructuras de la cadena         
+   *          - numero_fonemas_estacionario: número de estructuras de la cadena
    *            anterior.                                                               
-   *          - fonemas_transicion: cadena indexada con la información de las           
+   *          - fonemas_transicion: cadena indexada con la información de las
    *            transiciones entre fonemas buscados.                                    
-   *          - numero_fonemas_estacionario: número de estructuras de la cadena         
+   *          - numero_fonemas_estacionario: número de estructuras de la cadena
    *            anterior.                                                               
-   *          - minimo_numero_palabras: mínimo número de palabras de una frase para ser 
+   *          - minimo_numero_palabras: mínimo número de palabras de una frase para ser
    *            escogida.                                                               
-   *          - maximo_numero_palabras: máximo número de palabras de una frase para ser 
+   *          - maximo_numero_palabras: máximo número de palabras de una frase para ser
    *            escogida.                                                               
-   *          - porcentaje_minimo_ocurrencias: mínimo porcentaje de ocurrencias de las  
+   *          - porcentaje_minimo_ocurrencias: mínimo porcentaje de ocurrencias de las
    *            estructuras anteriores para que la frase pueda ser escogida.            
    * \remarks Valor devuelto:                                                                    
    *          - En ausencia de error se devuelve un cero.                               
    * \remarks Objetivo:  Cargar en memoria el contenido del fichero que contiene las estructuras 
-   *            fonéticas que se desean encontrar.                                      
+   *            fonéticas que se desean encontrar.
    * \remarks NOTA:	- Las estructuras deben ir en primer lugar las de la zona estacionaria,   
-   *			  seguidas de las de la zona de transición.								  
+   *			  seguidas de las de la zona de transición.
    */
 
   int Crea_vectores_descriptor::lee_estructuras_foneticas(Estructura_fonema_estacionario **fonemas_estacionario,
@@ -5257,33 +5265,33 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
   }
 
   /**
-   * Función:   seleccion_frases_secuencias_foneticas                                          
+   * Función:   seleccion_frases_secuencias_foneticas
    * \remarks Entrada:
    *			- frase_extraida: frase original.                                                
-   *          - frase_prosodica: cadena en la que se encuentra la información de los fonemas   
+   *          - frase_prosodica: cadena en la que se encuentra la información de los fonemas
    *			  de frase_extraida.											                 
-   *			- frase_separada: array con la información de cada palabra.						 
+   *			- frase_separada: array con la información de cada palabra.
    *			- fonema_estacionario: cadena con los fonemas buscados.							 
-   *			- numero_fonemas_estacionario: número de elementos de la cadena anterior.		 
+   *			- numero_fonemas_estacionario: número de elementos de la cadena anterior.
    *			- fonema_transicion: cadena con las transiciones de buscadas de fonemas.		 
-   *			- numero_fonemas_transicion: número de elementos de la cadena anterior.			 
+   *			- numero_fonemas_transicion: número de elementos de la cadena anterior.
    *			- minimo_numero_palabras: número mínimo de palabras para que la frase sea válida.
    *			- maximo_numero_palabras: número máximo de palabras para que la frase sea válida.
    *			- porcentaje_fonemas_buscados: porcentaje de transiciones entre semifonemas que  
-   *			  debe de haber en una frase, como mínimo, para que ésta sea válida.			 
+   *			  debe de haber en una frase, como mínimo, para que ésta sea válida.
    *	\remarks Salida:
-   *			- fichero_corpus: fichero en el que se van añadiendo las frases seleccionadas.   
-   *          - fichero_rechazo: fichero en el que se incluyen aquellas frases que no tenían   
+   *			- fichero_corpus: fichero en el que se van añadiendo las frases seleccionadas.
+   *          - fichero_rechazo: fichero en el que se incluyen aquellas frases que no tenían
    *            ninguna unidad entre las buscadas.                                             
    * \remarks Entrada y Salida:                                                                         
    *          - *corpus_prosodico: cadena de estructuras que se desea que formen el corpus     
-   *            prosódico. A la salida se eliminan aquellas ya encontradas.                    
-   *          - numero_estructuras: número de elementos de la cadena anterior. Se modifica a   
+   *            prosódico. A la salida se eliminan aquellas ya encontradas.
+   *          - numero_estructuras: número de elementos de la cadena anterior. Se modifica a
    *            salida, si es necesario.                                                       
    * \remarks Valor devuelto:                                                                           
    *          - En ausencia de error devuelve un 0.                                            
-   * \remarks Objetivo:  Determina si una frase debe pertenecer o no al corpus prosódico, en función    
-   *            del número de grupos entre pausas y de las palabras tónicas contenidas.        
+   * \remarks Objetivo:  Determina si una frase debe pertenecer o no al corpus prosódico, en función
+   *            del número de grupos entre pausas y de las palabras tónicas contenidas.
    */
 
   int Crea_vectores_descriptor::seleccion_frases_secuencias_foneticas(char *frase_extraida, t_prosodia *frase_prosodica,
@@ -5369,7 +5377,7 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
 
   /**
-   * Función:   libera_estructuras_foneticas                                            
+   * Función:   libera_estructuras_foneticas
    * \remarks Entrada:
    *			- fonema_estacionario: cadena con los fonemas buscados.				  
    *			 - fonema_transicion: cadena con las transiciones buscadas de fonemas.	  	 	
@@ -5387,25 +5395,25 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 #ifdef _CORPUS_PROSODICO
 
   /**
-   * Función:   genera_corpus_prosodico                                                        
+   * Función:   genera_corpus_prosodico
    * \remarks Entrada:
    *			- frase_extraida: frase original.                                                
-   *          - frase_fonetica: cadena en la que se encuentra la información silábica, de      
+   *          - frase_fonetica: cadena en la que se encuentra la información silábica, de
    *            tonicidad y de pausas.                                                         
-   *			- frase_separada: array con la información de cada palabra.						 
+   *			- frase_separada: array con la información de cada palabra.
    *	\remarks Salida:
-   *			- fichero_corpus: fichero en el que se van añadiendo las frases seleccionadas.   
-   *          - fichero_rechazo: fichero en el que se incluyen aquellas frases que no tenían   
+   *			- fichero_corpus: fichero en el que se van añadiendo las frases seleccionadas.
+   *          - fichero_rechazo: fichero en el que se incluyen aquellas frases que no tenían
    *            ninguna unidad entre las buscadas.                                             
    * \remarks Entrada y Salida:                                                                         
    *          - *corpus_prosodico: cadena de estructuras que se desea que formen el corpus     
-   *            prosódico. A la salida se eliminan aquellas ya encontradas.                    
-   *          - numero_estructuras: número de elementos de la cadena anterior. Se modifica a   
+   *            prosódico. A la salida se eliminan aquellas ya encontradas.
+   *          - numero_estructuras: número de elementos de la cadena anterior. Se modifica a
    *            salida, si es necesario.                                                      
    * \remarks Valor devuelto:                                                                           
    *          - En ausencia de error devuelve un 0.                                            
-   * \remarks Objetivo:  Determina si una frase debe pertenecer o no al corpus prosódico, en función    
-   *            del número de grupos entre pausas y de las palabras tónicas contenidas.        
+   * \remarks Objetivo:  Determina si una frase debe pertenecer o no al corpus prosódico, en función
+   *            del número de grupos entre pausas y de las palabras tónicas contenidas.
    */
 
   int Crea_vectores_descriptor::genera_corpus_prosodico(char *frase_extraida, char *frase_fonetica,
@@ -5534,14 +5542,14 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
   }
 
   /**
-   * Función:   escribe_corpus_prosodico                                                       
+   * Función:   escribe_corpus_prosodico
    * \remarks Entrada:
-   *			- inicial: puntero a la cadena indexada de estructuras prosódicas buscadas.      
-   *          - numero_estructuras: número de elementos de la cadena anterior.                 
+   *			- inicial: puntero a la cadena indexada de estructuras prosódicas buscadas.
+   *          - numero_estructuras: número de elementos de la cadena anterior.
    *	\remarks Salida:
    *			- fichero: fichero de tipo texto en el que se escriben las estructuras que no se 
    *            han encontrado.                                                                
-   * Objtivo:   Escribe en un fichero el número y el tipo de frases que no se han encontrado.  
+   * Objtivo:   Escribe en un fichero el número y el tipo de frases que no se han encontrado.
    */
 
   void Crea_vectores_descriptor::escribe_corpus_prosodico(Estructura_prosodica *inicial, int numero_estructuras,
@@ -5584,18 +5592,18 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
   }
 
   /**
-   * Función:   cuenta_grupos_y_tonicas                                                        
+   * Función:   cuenta_grupos_y_tonicas
    * \remarks Entrada:
-   *			- frase_fonetica: cadena en la que se encuentra la información silábica, de      
+   *			- frase_fonetica: cadena en la que se encuentra la información silábica, de
    *            tonicidad, y de pausas.                                                        
    *	\remarks Salida:
-   *			- numero_grupos: número de grupos entre pausas.                                  
-   *          - *tonicas: cadena en la que irá indexado el número de palabras tónicas de cada  
+   *			- numero_grupos: número de grupos entre pausas.
+   *          - *tonicas: cadena en la que irá indexado el número de palabras tónicas de cada
    *            grupo.                                                                         
    * \remarks Valor devuelto:                                                                           
    *          - En ausencia de error devuelve un 0.                                            
-   * \remarks Objetivo:  Calcula el número de grupos entre pausas de una frase, además del número de    
-   *            palabras  tónicas de cada uno de ellos.                                        
+   * \remarks Objetivo:  Calcula el número de grupos entre pausas de una frase, además del número de
+   *            palabras  tónicas de cada uno de ellos.
    */
 
   int Crea_vectores_descriptor::cuenta_grupos_y_tonicas(char *frase_fonetica, int *numero_grupos, short int **tonicas) {
@@ -5657,28 +5665,28 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
 
   /**
-   * Función:   lee_corpus_prosodico                                                    
+   * Función:   lee_corpus_prosodico
    * \remarks Entrada:
    *			- fichero: fichero de texto en el que se encuentran las estructuras       
-   *            prosódicas que se desea buscar, según el formato siguiente, por líneas: 
-   *            * Número de estructuras en total.                                       
-   *            * Línea en blanco.                                                      
+   *            prosódicas que se desea buscar, según el formato siguiente, por líneas:
+   *            * Número de estructuras en total.
+   *            * Línea en blanco.
    *            * Por cada estructura:                                                  
-   *               - Número de ocurrencias de la estructura que se desea encontrar, y   
+   *               - Número de ocurrencias de la estructura que se desea encontrar, y
    *                 tipo de frase [\n]                                                 
-   *               - Número de grupos entre pausas [\n]                                 
-   *               - Umbrales de palabras tónicas en cada grupo, por orden y según el   
+   *               - Número de grupos entre pausas [\n]
+   *               - Umbrales de palabras tónicas en cada grupo, por orden y según el
    *                 formato MIN0 MAX0, MIN1 MAX 1, MIN2 MAX2,... [\n]                  
-   *               - Línea en blanco.                                                   
+   *               - Línea en blanco.
    *	\remarks Salida:
-   *			- *corpus_prosodico: cadena indexada con la información de las            
+   *			- *corpus_prosodico: cadena indexada con la información de las
    *            estructuras que quedan por encontrarse. A la salida se eliminan las ya  
    *            las ya encontradas.                                                     
-   *          - numero_estructuras: número de estructuras de la cadena indexada.        
+   *          - numero_estructuras: número de estructuras de la cadena indexada.
    * \remarks Valor devuelto:                                                                    
    *          - En ausencia de error se devuelve un cero.                               
    * \remarks Objetivo:  Cargar en memoria el contenido del fichero que contiene las estructuras 
-   *            prosódicas que se desea que formen parte del corpus.                    
+   *            prosódicas que se desea que formen parte del corpus.
    */
 
   int Crea_vectores_descriptor::lee_corpus_prosodico(Estructura_prosodica **corpus_prosodico, int *numero_estructuras,
@@ -5736,11 +5744,11 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
 
   /**
-   * Función:   libera_corpus_prosodico                                                 
+   * Función:   libera_corpus_prosodico
    * \remarks Entrada:
-   *			- corpus_prosodico: cadena indexada con la información de las            
+   *			- corpus_prosodico: cadena indexada con la información de las
    *            estructuras que quedan por encontrarse.                                 
-   *          - numero_estructuras: número de estructuras de la cadena indexada.        
+   *          - numero_estructuras: número de estructuras de la cadena indexada.
    */
 
   void Crea_vectores_descriptor::libera_corpus_prosodico(Estructura_prosodica *corpus_prosodico,
@@ -5763,15 +5771,15 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
 
   /**
-   * Función:   elimina_estructura_prosodia                                             
+   * Función:   elimina_estructura_prosodia
    * \remarks Entrada:
-   *			- posicion: índice del elemento que se va a eliminar.                     
+   *			- posicion: índice del elemento que se va a eliminar.
    * \remarks Entrada y Salida:                                                                  
    *          - *inicial: puntero al inicio de la cadena.                               
-   *          - tamano: número de elementos de la cadena.                               
+   *          - tamano: número de elementos de la cadena.
    * \remarks Valor devuelto:                                                                    
    *          - En ausencia de error se devuelve un cero.                               
-   * \remarks Objetivo:  Eliminar aquellas estructuras de las que ya se ha encontrado el número  
+   * \remarks Objetivo:  Eliminar aquellas estructuras de las que ya se ha encontrado el número
    *            deseado de ocurrencias.                                                 
    */
 
@@ -5812,13 +5820,13 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 #ifdef _PARA_ELISA
 
   /**
-   * Función:    consigue_numero_frase                                               
+   * Función:    consigue_numero_frase
    * \remarks Entrada:
    *			- nombre_fichero: nombre del fichero, con el formato                  
-   *             "<num_frase>"-"<identificador>"-"<repetición>".                     
+   *             "<num_frase>"-"<identificador>"-"<repetición>".
    * \remarks Valor devuelto:                                                                 
-   *           - Se devuelve el número de la frase. Si el formato es incorrecto, se  
-   *             devuelve un número negativo.                                        
+   *           - Se devuelve el número de la frase. Si el formato es incorrecto, se
+   *             devuelve un número negativo.
    */
 
   int consigue_numero_frase(char *nombre_fichero) {
@@ -5854,11 +5862,11 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
 
   /**
-   * Función:    extraer_frase                                                       
+   * Función:    extraer_frase
    * \remarks Entrada:
-   *			- numero_frase: número de la frase.                                   
+   *			- numero_frase: número de la frase.
    *	\remarks Salida:
-   *			- frase_extraida: frase que se corresponde con el número anterior.    
+   *			- frase_extraida: frase que se corresponde con el número anterior.
    */
 
   void Crea_vectores_descriptor::extraer_frase(int numero_frase, char *frase_extraida) {
@@ -5868,7 +5876,7 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
   }
 
   /**
-   * Función:    carga_fichero_frases_elisa                                          
+   * Función:    carga_fichero_frases_elisa
    * \remarks Entrada:
    *			- fichero: puntero al fichero en el que se encuentran las frases.     
    */
@@ -5899,11 +5907,11 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
 
   /**
-   * Función:    crea_nombre_fichero_silabas                                         
+   * Función:    crea_nombre_fichero_silabas
    * \remarks Entrada:
    *			- fichero_original: nombre del fichero de fonemas original.           
    *	\remarks Salida:
-   *			- nombre_salida: nombre de salida, cambiando la extensión de .sal a   
+   *			- nombre_salida: nombre de salida, cambiando la extensión de .sal a
    *             .sil.                                                               
    * \remarks Valor devuelto:                                                                 
    *           - Si el formato de entrada del fichero no es correcto, devuelve -1.   
@@ -5928,11 +5936,11 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
 
   /**
-   * Función:    crea_nombre_fichero_duraciones                                      
+   * Función:    crea_nombre_fichero_duraciones
    * \remarks Entrada:
    *			- fichero_original: nombre del fichero de fonemas original.           
    *	\remarks Salida:
-   *			- nombre_salida: nombre de salida, cambiando la extensión de .sal a   
+   *			- nombre_salida: nombre de salida, cambiando la extensión de .sal a
    *             .dur.                                                               
    * \remarks Valor devuelto:                                                                 
    *           - Si el formato de entrada del fichero no es correcto, devuelve -1.   
@@ -5957,28 +5965,28 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
 
   /**
-   * Función:    calcula_duraciones_silabicas                                        
+   * Función:    calcula_duraciones_silabicas
    * \remarks Entrada:
-   *			- frase_prosodica: cadena de estructuras con la información prosodica 
+   *			- frase_prosodica: cadena de estructuras con la información prosodica
    *             de las unidades.                                                    
-   *           - frase_fonetica: cadena con la transcripción fonética del texto.     
-   *           - fichero_fonemas: fichero con la información de duraciones de        
+   *           - frase_fonetica: cadena con la transcripción fonética del texto.
+   *           - fichero_fonemas: fichero con la información de duraciones de
    *             fonemas.                                                            
-   *           - nombre_fichero_sfs: nombre del fichero sfs. Sólo para depurar.      
+   *           - nombre_fichero_sfs: nombre del fichero sfs. Sólo para depurar.
    *			 - nombre_fichero_fonemas: nombre del fichero de fonemas, para depurar.
    *			 - correccion_manual: si vale 0, el corpus no se revisó manualmente.
    *	\remarks Salida:
-   *			- fichero_silabas: fichero en el que se va escribiendo la información 
-   *             con la duración temporal silábica.                                  
-   *           - cadena_silabas: cadena indexada con la duración de las sílabas.     
-   *           - cadena_fonemas: cadena indexada con la duración de los fonemas.     
+   *			- fichero_silabas: fichero en el que se va escribiendo la información
+   *             con la duración temporal silábica.
+   *           - cadena_silabas: cadena indexada con la duración de las sílabas.
+   *           - cadena_fonemas: cadena indexada con la duración de los fonemas.
    * \remarks Entrada y Salida:                                                               
-   *           - numero_silabas: número de sílabas de cadena_silabas.                
-   *           - numero_fonemas: número de fonemas de cadena_fonemas.                
+   *           - numero_silabas: número de sílabas de cadena_silabas.
+   *           - numero_fonemas: número de fonemas de cadena_fonemas.
    * \remarks Valor devuelto:                                                                 
    *             En ausencia de error devuelve un cero.                              
-   * \remarks Objetivo:   Convierte la información de duraciones de fonemas a duraciones      
-   *             silábicas.                                                          
+   * \remarks Objetivo:   Convierte la información de duraciones de fonemas a duraciones
+   *             silábicas.
    */
 
   int Crea_vectores_descriptor::calcula_duraciones_silabicas(t_prosodia *frase_prosodica, char *frase_fonetica,
@@ -6353,12 +6361,12 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
 
 
   /**
-   * Función:    extrae_tamano_siguiente_silaba                                      
+   * Función:    extrae_tamano_siguiente_silaba
    *	\remarks Salida:
-   *			- tamano_silaba: número de caracteres (no fonemas) de la siquiente    
-   *             sílaba. (hay fonemas que se representan por medio de 2 caracteres). 
+   *			- tamano_silaba: número de caracteres (no fonemas) de la siquiente
+   *             sílaba. (hay fonemas que se representan por medio de 2 caracteres).
    * \remarks Entrada y Salida:                                                               
-   *           - frase: frase fonética, con tokens del tipo %prop  %, %pausa %, que  
+   *           - frase: frase fonética, con tokens del tipo %prop  %, %pausa %, que
    *             debemos eliminar.                                                   
    */
 
@@ -6450,7 +6458,7 @@ int Crea_vectores_descriptor::crea_vectores_descriptor(char * frase_extraida, t_
    *             actual.
    * \retval	numero_acentuales: número de elementos de la cadena actual.
    * \return	En ausencia de error devuelve un cero.                              
-   * \remarks Extrae las características de los grupos acentuales de la frase del 
+   * \remarks Extrae las características de los grupos acentuales de la frase del
    *             Corpus considerada.                                                 
    */
 
@@ -7348,16 +7356,16 @@ al intentar abrir el fichero de problemas.\n");
 #if defined(_GRUPOS_ACENTUALES) || defined(_MODO_NORMAL)
 
     /**
-     * Función:   extrae_grupo_acentual                                              
+     * Función:   extrae_grupo_acentual
      * \remarks Entrada:
      *			- frase_total: cadena con la frase completa.                         
      *	\remarks Salida:
-     *			- alofono_acento: posición del alófono en el que recae el acento.    
+     *			- alofono_acento: posición del alófono en el que recae el acento.
      *			- tipo_pausa: tipo de pausa en la que empieza el grupo.				 
      * \remarks Valor devuelto:                                                               
      *          - En ausencia de error se devuelve un cero.                          
      * \remarks Objetivo:  Extraer las porciones de frase entre pausas, dejando sólo la infor-
-     *            mación relativa a los grupos acentuales.                           
+     *            mación relativa a los grupos acentuales.
      */
 
     int Crea_vectores_descriptor::extrae_grupo_acentual(char *frase_total,
@@ -7546,14 +7554,14 @@ al intentar abrir el fichero de problemas.\n");
 
 
     /**
-     * Función:   calcula_numero_grupos_prosodicos                                   
+     * Función:   calcula_numero_grupos_prosodicos
      * \remarks Entrada:
      *			- frase_total: cadena con la frase completa.                         
-     * \remarks Objetivo:  Calcula el número de grupos entre pausas existentes en la frase    
-     *            se le pasa como parámetro.                                         
-     * \remarks NOTA:      Devuelve el valor en la variable global del módulo                 
+     * \remarks Objetivo:  Calcula el número de grupos entre pausas existentes en la frase
+     *            se le pasa como parámetro.
+     * \remarks NOTA:      Devuelve el valor en la variable global del módulo
      *            grupos_prosodicos_total.                                           
-     * NOTA 2:	  A partir de ahora también se consideran las rupturas prosódicas no 
+     * NOTA 2:	  A partir de ahora también se consideran las rupturas prosódicas no
      *			  coincidentes con pausas.											 	
      */
 
@@ -7591,12 +7599,12 @@ al intentar abrir el fichero de problemas.\n");
 
 
     /**
-     * Función:   calcula_numero_grupos_acentuales                                   
+     * Función:   calcula_numero_grupos_acentuales
      * \remarks Entrada:
      *			- grupo_prosodico: cadena con un grupo entre pausas.                 
-     * \remarks Objetivo:  Calcular el número de grupos acentuales contenidos en el grupo     
-     *            prosódico.                                                         
-     * \remarks NOTA:      El valor se devuelve en la variable global del módulo              
+     * \remarks Objetivo:  Calcular el número de grupos acentuales contenidos en el grupo
+     *            prosódico.
+     * \remarks NOTA:      El valor se devuelve en la variable global del módulo
      *            numero_grupos_acentuales.                                          
      */
 
@@ -7627,19 +7635,19 @@ al intentar abrir el fichero de problemas.\n");
 
 
     /**
-     * Función:   fin_grupo_acentual                                                 
+     * Función:   fin_grupo_acentual
      * \remarks Entrada:
      *			- frase: cadena con la frase completa.                               
-     *          - Alofono: alófono actual.                                           
+     *          - Alofono: alófono actual.
      *	\remarks Salida:
      *			- nuevo_grupo: variable que indica si se ha llegado al fin de un     
      *            grupo acentual (1) o no (0).                                       
-     *          - alofono_acento: vale 0 si sobre el alófono actual recae el acento, 
+     *          - alofono_acento: vale 0 si sobre el alófono actual recae el acento,
      *            y 1 en caso contrario.                                             
      *          - tipo_de_pausa: tipo de pausa en la que termina el grupo acentual.  
      * \remarks Valor devuelto:                                                               
      *          - En ausencia de error se devuelve un cero.                          
-     * \remarks Objetivo:  Avisar al programa llamante del final grupo acentual, además de    
+     * \remarks Objetivo:  Avisar al programa llamante del final grupo acentual, además de
      *            calcular el siguiente, obteniendo los valores precisos para el     
      *            objeto de tipo Grupo_acentual_candidato que lo caracteriza.        
      */
@@ -7696,17 +7704,17 @@ al intentar abrir el fichero de problemas.\n");
 
 
     /**
-     * Función:   calcula_posicion_acento                                            
+     * Función:   calcula_posicion_acento
      * \remarks Entrada:
-     *			- grupo_acentual: conjunto de palabras terminadas en una tónica.     
+     *			- grupo_acentual: conjunto de palabras terminadas en una tónica.
      *	\remarks Salida:
-     *			- alofono_acento: posición del alófono sobre el que cae el acento.   
+     *			- alofono_acento: posición del alófono sobre el que cae el acento.
      * \remarks Valor devuelto:                                                               
      *          - La posición del acento, según los siguientes valores:                             * 3: grupo huérfano (sin acento léxico).
      *              * 0: palabra aguda.                                              
      *              * 1: palabra grave.                                              
      *              * 2: resto de los casos.                                         
-     * \remarks Objetivo:  devuelve, respecto al final, la posición de la sílaba sobre la que 
+     * \remarks Objetivo:  devuelve, respecto al final, la posición de la sílaba sobre la que
      *            recae el acento.                                                       
      */
 
@@ -7787,7 +7795,7 @@ al intentar abrir el fichero de problemas.\n");
 
 
     /**
-     * Función:   reinicia_grupos_acentuales                                         
+     * Función:   reinicia_grupos_acentuales
      * \remarks Objetivo:  reiniciar las variables del módulo para su correcto funcionamiento.
      */
 
@@ -7801,18 +7809,18 @@ al intentar abrir el fichero de problemas.\n");
 
 
     /**
-     * Función:   encuentra_tipo_siguiente_pausa                                     
+     * Función:   encuentra_tipo_siguiente_pausa
      * \remarks Entrada:
      *			- recorre_frase_separada: puntero a la cadena de estructuras de tipo 
-     *           t_frase_separada, en la que se encuentra la información de cada      
+     *           t_frase_separada, en la que se encuentra la información de cada
      *           elemento de la frase.                                               
      * \remarks Valor devuelto:                                                               
      *           - El tipo de pausa, escogido entre los siguientes:                  
      *              * PAUSA_PUNTO.                                                   
      *              * PAUSA_COMA.                                                    
      *              * PAUSA_PUNTOS_SUSPENSIVOS.                                      
-     * \remarks NOTA:    Quizás sea necesario añadir en algún momento otros tipos de pausa,   
-     *          pero los datos de duración del Cospus que tenemos actualmente no nos 
+     * \remarks NOTA:    Quizás sea necesario añadir en algún momento otros tipos de pausa,
+     *          pero los datos de duración del Cospus que tenemos actualmente no nos
      *          lo permiten.                                                         
      */
 
@@ -7860,13 +7868,13 @@ al intentar abrir el fichero de problemas.\n");
 
 
     /**
-     * Función:   crea_nombre_fichero_grupo                                            
+     * Función:   crea_nombre_fichero_grupo
      * \remarks Entrada:
      *			- nombre_entrada: nombre del fichero de texto de entrada.              
      *	\remarks Salida:
      *			- nombre_salida: nombre del fichero de salida, sin la ruta.            
      * \remarks Objetivo:  Extraer el nombre del fichero en el que se encuentra la unidad,      
-     *            eliminando la ruta, para que ésta no tenga por qué ser fija.         
+     *            eliminando la ruta, para que ésta no tenga por qué ser fija.
      */
 
     void Crea_vectores_descriptor::crea_nombre_fichero_grupo(char *nombre_entrada, char *nombre_salida) {
@@ -8192,12 +8200,12 @@ al intentar abrir el fichero de problemas.\n");
 
 
     /**
-     * Función:   tipo_vocal                                                         
+     * Función:   tipo_vocal
      * \remarks Entrada:
-     *			- vocal: carácter perteneciente a una sílaba.                        
+     *			- vocal: carácter perteneciente a una sílaba.
      * \remarks Valor devuelto:                                                               
      *          - Si es una vocal fuerte: 1.                                         
-     *          - Si es débil: 2.                                                    
+     *          - Si es débil: 2.
      *          - Otro caso: 0.                                                      
      */
 
@@ -8216,11 +8224,11 @@ al intentar abrir el fichero de problemas.\n");
 
 
     /**
-     * Función:   encuentra_vocal_fuerte                                             
+     * Función:   encuentra_vocal_fuerte
      * \remarks Entrada:
      *			- silaba: cadena con los caracteres (alófonos), que forman la sílaba.
      * \remarks Valor devuelto:                                                               
-     *          - La posición de la vocal fuerte, y -1 en caso de error.             
+     *          - La posición de la vocal fuerte, y -1 en caso de error.
      */
 
     int encuentra_vocal_fuerte(char *silaba) {
@@ -8282,17 +8290,17 @@ al intentar abrir el fichero de problemas.\n");
 
 
     /**
-     * Función:   decide_categoria_morfosintactica_grupo_acentual                  
+     * Función:   decide_categoria_morfosintactica_grupo_acentual
      * \remarks Entrada:
-     *			- frase_separada: elemento de la cadena con la información sobre   
+     *			- frase_separada: elemento de la cadena con la información sobre
      *			  las palabras de la frase.										   
      * \remarks Valor devuelto:                                                             
-     *          - La categoría que le corresponde dentro de la clasificación de    
+     *          - La categoría que le corresponde dentro de la clasificación de
      *			  los grupos acentuales.			    	                       
-     * \remarks Objetivo:  Realizar la conversión entre las categorías generales y las de   
+     * \remarks Objetivo:  Realizar la conversión entre las categorías generales y las de
      *			  los grupos acentuales.										   
-     * \remarks NOTA:	  Ver función Trat_fon::tonica para comprobar las categorías que   
-     *			  consideran tónicas.											   		
+     * \remarks NOTA:	  Ver función Trat_fon::tonica para comprobar las categorías que
+     *			  consideran tónicas.
      */
 
     char decide_categoria_morfosintactica_grupo_acentual(t_frase_separada *frase_separada) {

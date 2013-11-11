@@ -1080,7 +1080,7 @@ int Cotovia::cotovia(int argc, char **argv, char * entrada, t_opciones opc)
 	  return 1;
 	}
 
-	if ( (!opciones.lin || opciones.lin == 2 || opciones.lin > 4) && opciones.lin != 8 && opciones.tra < 4 && !opciones.audio && !opciones.wav && !opciones.fon)
+	if ( (!opciones.lin || opciones.lin == 2 || opciones.lin > 4) && opciones.lin != 8 && opciones.tra < 4 && !opciones.audio && !opciones.wav && !opciones.fon && !opciones.hts)
 	  continue;
 
 	//fmendez comienzo generacion_prosodia
@@ -1110,6 +1110,11 @@ int Cotovia::cotovia(int argc, char **argv, char * entrada, t_opciones opc)
 	  {
 	    continue;
 	  }
+
+	if (opciones.hts && !opciones.wav && !opciones.audio) {
+		libera_memoria_prosodia();
+		continue;
+	}
 
 #ifdef _MODO_NORMAL
 
@@ -1965,7 +1970,7 @@ void Cotovia::Reset(void){
     rec->pal_transformada=NULL;
     *rec->pal_sil_e_acentuada=0;
     rec->clase_pal=0;
-    if (!opciones.audio && !opciones.wav &&  !opciones.lin &&
+    if (!opciones.audio && !opciones.wav && !opciones.hts && !opciones.lin &&
 	(opciones.pre || (opciones.tra>0 && opciones.tra<4))) {
       rec= (t_frase_separada *) ((char  *)rec + kk);
       continue;
@@ -2006,7 +2011,7 @@ void Cotovia::Reset(void){
   //*palabras_procesadas[1]=0;
 
 #if defined(_MODO_NORMAL) && !defined(_CORPUS_PROSODICO) && !defined(_SECUENCIAS_FONETICAS)
-  if (!(opciones.audio || opciones.wav || opciones.lin==1 || opciones.tra==4 ||
+  if (!(opciones.audio || opciones.wav || opciones.hts || opciones.lin==1 || opciones.tra==4 ||
 	opciones.lin==3 || opciones.lin==4 || opciones.lin==8)) {
     numero_de_elementos_de_frase_separada=0;
     return;
@@ -2119,7 +2124,7 @@ int Cotovia::Inicio(char * entrada){
   if (diccionarios->inicia_diccionario(opciones, lenguas[opciones.lenguajes].indice))
     return 1;
 
-  if (!(opciones.audio || opciones.wav || opciones.lin || opciones.tra==4 || opciones.fon))
+  if (!(opciones.audio || opciones.wav || opciones.lin || opciones.hts || opciones.tra==4 || opciones.fon))
     return OK;
 
   analisis_morfosintactico.selecciona_lenguaje(opciones.lenguajes);
@@ -2129,7 +2134,7 @@ int Cotovia::Inicio(char * entrada){
 #endif
 
 #ifdef _MODO_NORMAL
-  if (opciones.audio || opciones.wav) {
+  if (opciones.audio || opciones.wav || opciones.hts) {
 
     if (opciones.difo) {
 			fprintf(stderr,"Sintesis difonemas obsoleta\n");
@@ -2360,7 +2365,7 @@ int Cotovia::Carga(t_opciones &opc){
   *locutores_empleados = 0;
 
 #ifndef _ESTADISTICA
-  if (!(opciones.audio || opciones.wav || opciones.lin || opciones.tra==4 || opciones.fon))
+  if (!(opciones.audio || opciones.wav || opciones.lin || opciones.hts || opciones.tra==4 || opciones.fon))
     return OK;
 #endif
 
@@ -2373,7 +2378,7 @@ int Cotovia::Carga(t_opciones &opc){
   analisis_morfosintactico_cargado = true;
 
 
-  if (!(opciones.audio || opciones.wav)) {
+  if (!(opciones.audio || opciones.wav || opciones.hts)) {
     return OK;
   } // if (!(opciones.audio || ...
 
@@ -2555,7 +2560,7 @@ void Cotovia::Fin (void){
 
 
 #ifdef _MODO_NORMAL
-  if (opciones.audio || opciones.wav){
+  if (opciones.audio || opciones.wav ||opciones.hts){
     /*
      *if (opciones.difo == 1){
      *  sintesis_difonemas.libera_memoria();
@@ -2786,7 +2791,7 @@ int Cotovia::procesado_linguistico(void) {
 
   preprocesador.preprocesa(f_tokenizada, f_procesada, f_separada, &numero_de_elementos_de_frase_separada);
 
-  if (!(opciones.audio || opciones.wav || opciones.lin || opciones.tra || opciones.fon)) {
+  if (!(opciones.audio || opciones.wav || opciones.hts || opciones.lin || opciones.tra || opciones.fon)) {
     return 0;
   }
   /* Rellenamos o campo pal_procesada de cada estructura de frase_separada cun
@@ -2797,8 +2802,8 @@ int Cotovia::procesado_linguistico(void) {
   silabificar_e_acentuar(f_separada, opciones.idioma);
   if (opciones.tra && opciones.tra<4 ){
     transcripcion.transcribe(f_separada, f_silabas, f_fonetica, opciones.idioma);
-    transcripcion.vuelca_transcripcion(f_fonetica, f_separada);
-    if (!(opciones.audio || opciones.wav || opciones.lin)) {
+    if(!opciones.hts) transcripcion.vuelca_transcripcion(f_fonetica, f_separada);
+    if (!(opciones.audio || opciones.wav || opciones.lin || opciones.hts)) {
       return 0;
     }
     *f_fonetica = 0;
@@ -2840,7 +2845,7 @@ int Cotovia::procesado_linguistico(void) {
   } // else // if (f_analisis != NULL)
 
 #if !defined(_CORPUS_PROSODICO) && !defined(_SECUENCIAS_FONETICAS)
-  if ( (opciones.lin == 2 || opciones.lin > 4) && opciones.lin != 8)   {
+  if ( (opciones.lin == 2 || opciones.lin > 4) && opciones.lin != 8 && !opciones.hts)   {
     analisis_morfosintactico.sacar_analisis_morfosintactico(frase, f_separada,
 							    f_procesada, f_silabas, f_fonetica, f_sintagmada, f_en_grupos,
 							    f_prosodica, flin, opciones.fsalida, opciones.lin,opciones.separa_lin,opciones.idioma);
@@ -2907,8 +2912,9 @@ int Cotovia::generacion_prosodia(FILE * fichero_fonemas, FILE * fichero_silabas,
 
   construye_frase_fonetica();
 
+
 #ifndef _CORPUS_PROSODICO
-  if ( (opciones.lin==3 || opciones.lin==4 || opciones.lin == 8) && opciones.tra <4 && !(opciones.audio || opciones.wav )){
+  if ( (opciones.lin==3 || opciones.lin==4 || opciones.lin == 8) && opciones.tra <4 && !(opciones.audio || opciones.wav || opciones.hts)){
     analisis_morfosintactico.sacar_analisis_morfosintactico(frase, f_separada,
 							    f_procesada, f_silabas, f_fonetica, f_sintagmada, f_en_grupos,
 							    f_prosodica, flin, opciones.fsalida, opciones.lin,opciones.separa_lin,opciones.idioma);
@@ -2916,8 +2922,8 @@ int Cotovia::generacion_prosodia(FILE * fichero_fonemas, FILE * fichero_silabas,
   }
 #endif
   if (opciones.tra==4){ //tra
-    transcripcion.vuelca_transcripcion(f_fonetica,f_separada);
-    if (!(opciones.audio || opciones.wav || opciones.lin))
+    if (!opciones.hts) transcripcion.vuelca_transcripcion(f_fonetica,f_separada);
+    if (!(opciones.audio || opciones.wav || opciones.lin || opciones.hts))
       return 2;
   }
 
@@ -2931,7 +2937,7 @@ int Cotovia::generacion_prosodia(FILE * fichero_fonemas, FILE * fichero_silabas,
   }
 
 #ifndef _SECUENCIAS_FONETICAS
-  if (opciones.lin) {
+  if (opciones.lin && !opciones.hts) {
     analisis_morfosintactico.sacar_analisis_morfosintactico(frase,
 							    f_separada, f_procesada, f_silabas, f_fonetica, f_sintagmada,
 							    f_en_grupos, f_prosodica, flin, opciones.fsalida, opciones.lin,opciones.separa_lin,opciones.idioma);
@@ -3046,7 +3052,7 @@ int Cotovia::generacion_prosodia(FILE * fichero_fonemas, FILE * fichero_silabas,
 
 
 #ifdef _MODO_NORMAL
-  if (!(opciones.audio || opciones.wav))
+  if (!(opciones.audio || opciones.wav || opciones.hts))
     return 2;
 
   if (opciones.difo == 0) {
@@ -3102,6 +3108,10 @@ int Cotovia::generacion_prosodia(FILE * fichero_fonemas, FILE * fichero_silabas,
 	  fclose(fichero_errores);
 	  return 3;
 	} // if (crea_vectores_descriptor...
+
+	if (opciones.hts) {
+		print_hts_info();
+	}
 
   }
 
@@ -3173,3 +3183,80 @@ void Cotovia::libera_memoria_prosodia(void){
   numero_acentuales = 0;
 
 }
+
+/**
+ * \brief Vuelca en el fichero de salida los datos de los fonemas necesarios para HTS
+ * \author fmendez
+ *
+ */
+
+void Cotovia::print_hts_info(void){
+ 	char cadena_categoria[50];
+
+
+	
+	char aux[FILENAME_MAX];
+	
+	if (flin==NULL) {
+		strcpy(aux,opciones.fsalida);
+		strcat(aux,".hts");
+		if ((flin=fopen(aux,"w"))==NULL) {
+			fprintf(stderr,"\nO arquivo de informacion linguistica \"%s\" non se pode crear",aux);
+			return;
+		}
+	}	
+	
+	
+	transcripcion.divide_frase_fonetica(f_fonetica,f_separada);
+	fprintf(flin,"phoneme syll stress word class interr\n");
+	fprintf(flin,"sil\n");
+//	for( int k = 1 ; k < numero_unidades-1 ; k++ ){
+    for (vector<Vector_descriptor_objetivo>::iterator it = cadena_unidades.begin();
+       it != cadena_unidades.end(); it++) {
+
+		if (*it->semifonema == '#' ) {
+			fprintf(flin,"pau\n");
+		}
+		else {
+			fprintf(flin,"%s", it->semifonema);
+			if (it->frontera_inicial) {
+				fprintf(flin," %s %d", it->silaba_hts, it->acento);
+			}
+
+			if (it->frontera_inicial > 3) {
+				fprintf(flin," %s ", it->palsep->tr_fon);
+				//fprintf(flin,"%s\t%s\n", it->palsep->pal, it->palsep->tr_fon); //chimarme estp
+				escribe_tipo_categoria_morfosintactica_grupo((int) decide_categoria_morfosintactica_grupo_acentual(it->palsep), cadena_categoria);
+				fprintf(flin,"%s", cadena_categoria);
+
+
+			 switch (it->frase){
+					case 0:
+						fprintf(flin," enu");
+						break;
+					case 1:
+						fprintf(flin," exc");
+						break;
+					case 2:
+						fprintf(flin," int");
+						break;
+					case 3:
+						fprintf(flin," sus");
+						break;
+					default:
+						fprintf(flin," enu");
+						break;
+				}
+
+			}	
+			fprintf(flin,"\n");
+
+
+		}
+
+	}
+
+	fprintf(flin,"sil\n");
+
+}
+

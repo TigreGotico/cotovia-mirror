@@ -104,7 +104,7 @@ dbg =-dbg
 dist = debug
 else #optimización
 dist = release
-CFLAGS += -O3
+CFLAGS += -O3 -fpermissive
 #CFLAGS += -funroll-all-loops
 ifeq ($(HOSTTYPE),x86_64)
 #CFLAGS += -march=core2
@@ -130,7 +130,7 @@ endif
 #CFLAGS += -Wno-write-strings
 #CFLAGS += -pedantic
 
-INCLUDE = -Iinclude
+INCLUDE = -Iinclude -I../util/include/utf8cpp
 #LDFLAGS =
 #LDFLAGS += -Wl,--unresolved-symbols=ignore-in-object-files
 #LDFLAGS += -static
@@ -143,11 +143,11 @@ YACC = bison
 
 ifeq ($(CROSS_COMPILE),-win32)
 win = -win32
-INCLUDE += -I../include
-LDLIBS += -lpcreposix -lpcre -lwinmm
+INCLUDE += -I../include -I../include/utf8cpp
+LDLIBS += -liconv -lpcreposix -lpcre -lwinmm
 LDFLAGS += -L../../lib/win32 -mwin32 -mconsole
 DLLWIN32FLAGS += -Wl,--output-def,$(libdir)/$@$(win)$(dbg).def,--out-implib,$(libdir)/$@$(win)$(dbg).lib
-CFLAGS += -mwin32 -mconsole
+CFLAGS += -mwin32 -mconsole -fpermissive
 DEFS = -D_WIN32
 dlext =.dll
 execext = .exe

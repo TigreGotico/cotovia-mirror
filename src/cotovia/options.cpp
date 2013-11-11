@@ -82,6 +82,7 @@ void usage(char * exec_file)
 	fprintf(stdout, "  -j, --units-usage-output-file=<filename>                Writes information about the units chosen for synthesis. Useful for acoustic units prunning\n"); // -fich_uso_unidades
 	fprintf(stdout, "  -H, --galician-help                                     Help in galician language\n");
 	fprintf(stdout, "  -v, --version                                           Prints cotovia's version number\n");
+	fprintf(stdout, "  -R, --hts                                               Experimental option that obtains some information for using with HTS\n");
 	fprintf(stdout, "  -h, --help                                              This help message\n");
 	fprintf(stdout, "\n");
 	fprintf(stdout, "Examples:\n");
@@ -135,6 +136,7 @@ void usage_gl(char * exec_file)
 	fprintf(stdout, "  -j, --units-usage-output-file=<arquivo>                 Escribe nun arquivo os semifonemas que se escolleron para a síntesis. Emprégase para a poda de unidades acústicas.\n"); // -fich_uso_unidades
 	fprintf(stdout, "  -H, --galician-help                                     Mensaxe de axuda en galego\n");
 	fprintf(stdout, "  -v, --version                                           Mostra a información da versión de cotovia\n");
+	fprintf(stdout, "  -R, --hts                                               Opción experimental que obtén algunha información para o seu uso co HTS\n");
 	fprintf(stdout, "  -h, --help                                              Axuda en inglés\n");
 	fprintf(stdout, "\n");
 	fprintf(stdout, "Exemplos de uso:\n");
@@ -195,6 +197,7 @@ int get_options(int argc, char ** argv, t_opciones * opciones)
 		{"galician-help", no_argument, NULL, 'H'},
 		{"version", no_argument, NULL, 'v'},
 		{"help", no_argument, NULL, 'h'},
+		{"hts", no_argument, NULL, 'R'},
 		{0, 0, 0, 0}
 	};
 
@@ -202,7 +205,7 @@ int get_options(int argc, char ** argv, t_opciones * opciones)
 	opciones->fstdin=1;
 
 	//while ((l = getopt_long_only(argc, argv, "i:IswpPt::A::WL::fN:M:um:gSTnrFc:C:d:y:x:z:D:O:V:l:a:b:j:Hvh?", longopts, &i)) != EOF) {
-	while ((l = getopt_long(argc, argv, "i:IswpPt::A::WL::fN:M:um:gSTnrFc:C:d:y:x:z:D:O:V:l:a:b:j:Hvh?", longopts, &i)) != EOF) {
+	while ((l = getopt_long(argc, argv, "i:IswpPt::A::WL::fN:M:um:gSTnrFc:C:d:y:x:z:D:O:V:l:a:b:j:HvhR?", longopts, &i)) != EOF) {
 		switch (l) {
 			case 'i':
 				strcpy(opciones->fentrada, optarg);
@@ -290,6 +293,9 @@ int get_options(int argc, char ** argv, t_opciones * opciones)
 				break;
 			case 'r':
 				opciones->separa_lin=1;
+				break;
+			case 'R':
+				opciones->hts=1;
 				break;
 			case 'F':
 				opciones->fuerza_fronteras = 1;

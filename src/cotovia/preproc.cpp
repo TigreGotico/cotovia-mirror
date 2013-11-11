@@ -403,7 +403,7 @@ void deletrear(char *entrada, char *sal, char idio)
 
 /** \fn  void Preproceso::transformacion_de_palabra_en_maiusculas(t_palabra_proc sal, t_palabra ent)
  *
- * Intentamos aqui procesar aquelas palabras na que todas as letras estan en
+ * Intentamos aqui procesar aquelas palabras nas que todalas letras estan en
  * maiuscula. Pode ser un titulo, caso no que simplemente haberia que
  * pasalas a minusculas ou ben ser un acronimo, caso no que hai que buscalo
  * na lista para extendelo e se non esta seria mellor pasalo a minusculas e
@@ -477,7 +477,7 @@ int Preproceso::averiguar_numero_gramatical(t_palabra palabra_anterior, unsigned
 /** \fn  void Preproceso::adaptar_abreviatura_non_encontrada(char *pal_abreviada,
  *                                                 char *abreviatura_pronunciada)
  *
- * Eliminamos calquera cousa que haia polo
+ * Eliminamos calquera cousa que haxa polo
  * medio e sexa distinto a unha letra nestas palabras. Deixando en abreviatura_pronunciada
  * a adaptacion da abreviatura non achada pasada en pal_abreviada.                                                                   *
  */
@@ -695,7 +695,33 @@ void Preproceso::transformacion_de_pal_empeza_maiusculas(t_palabra_proc pal_pron
 		//strcat(pal_pronunciada, pal_en_minusculas);
 		strcpy(pal_pronunciada, pal_en_minusculas);
 	}
+
 }
+
+
+/**  \fn void Preproceso::transformacion_de_contraccion(t_palabra_proc pal_pronunciada,
+ *                                                                               t_palabra pal)
+ *
+ * Cando a palabra se trata da contraccion entre a preposicion "a" e o artigo masculino "o(s)"
+ * e aparece na forma grafica "ao(s)" substituese pola pronunciacion correcta "ó(s)".
+*/
+
+void Preproceso::transformacion_de_contraccion(t_palabra_proc pal_pronunciada, t_palabra pal)
+
+{
+
+	if (strcmp(pal,"ao") == 0) {
+
+		strcpy(pal_pronunciada, "ó");
+
+	}
+	else if (strcmp(pal,"aos") == 0) { 
+
+		strcpy(pal_pronunciada, "ós");
+
+	}
+}
+
 
 /**  \fn   void Preproceso::transformacion_de_ordinal(t_palabra_proc numero_pronunciado,
  *                                                      t_palabra num, unsigned char xen)
@@ -2028,7 +2054,7 @@ void Preproceso::adaptacion_por_defecto(char *abreviatura_pronunciada, char *pal
  * preprocesada enlazase cun punteiro a aquela palabra da que proven para tela xa
  * asi accesible nun dos campos das estructuras das que se compon a variable global
  * frase separada.
- * Imos comprobando segun a clase e chamamos a funcion correspondente que o
+ * Imos comprobando segundo a clase e chamamos a funcion correspondente que o
  * transforma que se chamara " transformacion de ...cardinal, ...abreviatura.
  * Esta funcion chama as outras que son as auxiliares.
  */
@@ -2039,6 +2065,16 @@ void Preproceso::elemento_a_preprocesar(Token * elemento_de_frase, int *orden, i
 
 	palabras_procesadas[*orden][0] = 0;
 	switch (elemento_de_frase->clase_pal) {
+	case LETRA:
+		deletrear(elemento_de_frase->token, (char *) &palabras_procesadas[*orden], idioma);
+		break;
+
+	case CONTRACCION_ARTIGO_MASCULINO_PREPOSICION_A:
+			pasar_a_minusculas(elemento_de_frase->token, elemento_de_frase->token);
+			transformacion_de_contraccion((char *)
+					&palabras_procesadas[*orden], elemento_de_frase->token);
+			break;
+
 	case PALABRA_NORMAL:
 			pasar_a_minusculas(elemento_de_frase->token, elemento_de_frase->token);
 		return;
@@ -2157,6 +2193,7 @@ void Preproceso::elemento_a_preprocesar(Token * elemento_de_frase, int *orden, i
 
 		transformacion_de_palabra_en_maiusculas((char *)
 					&palabras_procesadas[*orden], elemento_de_frase->token);
+
 		break;
 	case CARACTER_ESPECIAL:
 		if (no_primera)

@@ -226,6 +226,7 @@ class Cotovia:Interfaz
 #endif	
 	
 				      void libera_memoria_prosodia(void);
+					  void print_hts_info(void);  // HTS
 
 				      static map<string, Lengua> lenguas;
 				      static map<unsigned char, char *> lang;

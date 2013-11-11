@@ -191,7 +191,9 @@ using namespace std;
 #define      PALABRA_NORMAL_EMPEZA_MAY_Y_CATEGORIA_DESCONOCIDA  27
 #define      VALOR_DE_GRADOS_DECIMAL                   28
 #define      CADENA_DE_SIGNOS                   29
-#define 		DELETREO 30
+#define 	 DELETREO 30
+#define      CONTRACCION_ARTIGO_MASCULINO_PREPOSICION_A 31
+#define	     LETRA 32
 
 /*
  * CATEGORIAS GRAMATICAIS EMPREGADAS
@@ -795,10 +797,11 @@ typedef struct {
 	float factor;
 	float factor2;
 	int modificacion_prosodica; // 0, no se realiza nunca; 1, se realiza siempre; 2, no se realiza, pero no se copian tal cual unidades consecutivas; otro valor: se realiza según los umbrales.
+	int hts;
 } t_opciones;
 
 
-#define opciones_por_defecto {0,0,100,100,GALEGO,0,0,0,0,0,0,0,0,0,0,0,0,0,1,"sabela","gl",".","","","","","","","","",50,10,0,0,0,0,0,0,0,0,0,0,5,2,0,0.5,0.5,3}
+#define opciones_por_defecto {0,0,100,100,GALEGO,0,0,0,0,0,0,0,0,0,0,0,0,0,1,"sabela","gl",".","","","","","","","","",50,10,0,0,0,0,0,0,0,0,0,0,5,2,0,0.5,0.5,3,0}
 
 
 #endif

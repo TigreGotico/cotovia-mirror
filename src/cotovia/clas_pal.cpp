@@ -41,15 +41,15 @@ ______________________________________________________________________________*/
 /*============================================================================
   =  Unha vez separadas as posibles palabras clasificanse segun a forma que  =
   = teñan os seus caracteres: letras (maiusculas-minusculas..) números ,sig- =
-  = -nos, etc. Cada palabra esta ocupa unha estructura que conten outros cam-=
-  = -pos como por exemplo a clase de palabra que e segun os seguintes codigos=
+  = -nos, etc. Cada palabra ocupa unha estructura que conten outros campos   =
+  = como por exemplo a clase de palabra que e segundo os seguintes codigos   =
   = definidos como macros.                                                   =
   ============================================================================*/
 
 /**
  * \author 
  * \remark  Para ser palabra estandar solo debe ter letras e a primeira pode
- * ser ou non maiuscula. Dependendo de esto clasificaremolas en nome propios ou
+ * ser ou non maiuscula. Dependendo desto clasificaremolas en nome propios
  * ou ben palabra normal de todo. O dos nomes propios pode servir no
  * preprocesado para poñer os Orden dos reis ou Papas ,nos que o numero romano
  * lese como ordinal e nos seculos como cardinal. Para ser mais preciso haberia
@@ -472,8 +472,8 @@ short int numero_romano( char*pal)
 }
 
 /*****************************************************************************
- *  short int forma_de_inicial(t_palabra pal):  Detecta se a cadea esta forma-*
- * -da por unha maiuscula mais un punto, nese caso devolve 1 e se non 0.     *
+ * int forma_de_inicial(t_palabra pal):  Detecta se a cadea esta formada por *
+ * unha maiuscula mais un punto, nese caso devolve 1 e se non 0.             *
  *****************************************************************************/
 int forma_de_inicial(char * pal)
 {
@@ -493,6 +493,24 @@ unsigned char cadena_de_signos(char * pal){
 	}
 	return CADENA_DE_SIGNOS;
 }
+
+
+
+/*****************************************************************************
+ *  short int contraccion_artigo_masculino_preposicion_a(unsigned char*pal): *
+ *  Comproba se a palabra que se lle pasa como parametro se corresponde coa  *
+ * forma escrita "ao(s)" da contraccion entre o artigo determinado masculino *
+ * "o(s)" e a preposicion "a". Devolve un 1 se a palabra coincide cunha das  *
+ * das duas formas e un 0 en caso contrario.                                 *
+ *****************************************************************************/
+short int contraccion_artigo_masculino_preposicion_a(char*pal)
+{
+
+	if ((strcasecmp(pal,"ao") == 0) || (strcasecmp(pal,"aos") == 0)) return 1;
+	else return 0;
+
+}
+
 /*****************************************************************************
  *  void clasificar_palabras(t_frase_separada *elemento_de_frase, n_caracte- *
  *  res_frase):  Imos collendo cada palabra e clasificandoa. O array de es-  *
@@ -504,10 +522,58 @@ unsigned char cadena_de_signos(char * pal){
  *  esta a null. Se clas_pal e NUM_ROMANO pero a frase esta formada por un u-*
  *  nico caracter, cambiase clas_pal a PALABRA_CONSONANTES_MINUSCULAS.       *
  *****************************************************************************/
+
 void clasificar_palabras(Token * token, int n_caracteres_frase){
 
 	while (*token->token) {
-		if (numero_romano(token->token)) {
+		if (*(token->token+strlen(token->token)-1)=='%'){
+			token->clase_pal=PORCENTUAL;
+		}
+		else if (caracter_especial(token->token[0])){
+			token->clase_pal=CARACTER_ESPECIAL;
+		}
+		else if ((signo((unsigned char)*token->token) && strlen(token->token)<2) ||
+        		  (strcmp(token->token, SIMBOLO_RUPTURA_ENTONATIVA) == 0) ||
+                  (strcmp(token->token, SIMBOLO_RUPTURA_COMA) == 0)){
+			token->clase_pal=SIGNO_PUNTUACION;
+		}
+		else if ((token->clase_pal=cadea_numerica(token->token))!=0);
+		else if (forma_de_abreviatura(token->token)){
+			token->clase_pal=ABREVIATURA;
+		}
+		else if (n_caracteres_frase==2) {
+			token->clase_pal=LETRA;
+		}
+		else if (contraccion_artigo_masculino_preposicion_a(token->token)) {
+			token->clase_pal=CONTRACCION_ARTIGO_MASCULINO_PREPOSICION_A;
+		}
+		else if (numero_romano(token->token)) {
+			token->clase_pal=NUM_ROMANO;		
+		}		
+
+		else if (forma_de_inicial(token->token)){
+			token->clase_pal=INICIAL;
+		}
+			else if (todo_maiusculas (token->token)){
+			token->clase_pal=PALABRA_TODO_MAIUSCULAS;
+		}
+		else if ((token->clase_pal=palabra_estandar(token->token))!=0);
+		else if ((token->clase_pal=cadena_de_signos(token->token))!=0);
+		else{
+			token->clase_pal=SIN_CLASIFICAR;
+		}
+		
+		token++;
+	}
+
+}
+/* void clasificar_palabras(Token * token, int n_caracteres_frase){
+
+	while (*token->token) {
+		if (contraccion_artigo_masculino_preposicion_a(token->token)) {
+			token->clase_pal=CONTRACCION_ARTIGO_MASCULINO_PREPOSICION_A;
+		}
+		else if (numero_romano(token->token)) {
 			if (n_caracteres_frase==2) {
 				token->clase_pal=PALABRA_CONSONANTES_MINUSCULAS;
 			}
@@ -545,6 +611,4 @@ void clasificar_palabras(Token * token, int n_caracteres_frase){
 		token++;
 	}
 
-}
- 
-
+} */

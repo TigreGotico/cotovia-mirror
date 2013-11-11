@@ -2593,10 +2593,12 @@ int Analisis_morfosintactico::convierte_a_categorias_modelo_lenguaje(t_frase_sep
 					// al hacer la correspondencia inversa.
 #ifndef _CORPUS_PROSODICO
 				default:
-					char yipicallei[500];
-					escribe_categoria_gramatical(categoria_original,yipicallei);
+					//char yipicallei[500];
+					//escribe_categoria_gramatical(categoria_original,yipicallei);
 					fprintf(stderr, "Error en convierte_a_categorias_modelo_lenguaje. Categoría no contemplada.\n");
-					printf("%s\n",yipicallei);
+					//printf("%s\n",yipicallei);
+					escribe_categoria_gramatical(categoria_original,stderr);
+
 					return 1;
 #endif
 			} // Debe de ser del switch...

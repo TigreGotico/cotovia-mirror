@@ -1457,6 +1457,8 @@ Vector_descriptor_objetivo::Vector_descriptor_objetivo() {
   contexto_derecho_2[0] = '\0';
   contexto_izquierdo_2[0] = '\0';
   palabra = NULL;
+  silaba_hts[0]='\0';
+  palsep=NULL;
 
 }
 
@@ -1491,7 +1493,10 @@ Vector_descriptor_objetivo &Vector_descriptor_objetivo::operator= (const Vector_
 
     if ( (palabra = (char *) malloc((strlen(origen.palabra) + 1)*sizeof(char))) != NULL) // No me convence esto, pero los constructores no devuelven valores :S y no quiero llenarlo todo de excepciones :S
       strcpy(palabra, origen.palabra);
-      
+
+    strcpy(silaba_hts,origen.silaba_hts);
+    palsep=origen.palsep;
+
     acento = origen.acento;
     frase = origen.frase;
     posicion = origen.posicion;
@@ -1543,6 +1548,8 @@ void Vector_descriptor_objetivo::inicializa() {
     free(palabra);
     palabra = NULL;
   }
+  silaba_hts[0]='\0';
+  palsep=NULL;
 
 }
 

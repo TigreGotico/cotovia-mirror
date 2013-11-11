@@ -1666,6 +1666,11 @@ void asignar_pausa_entre_frases(char *f_sil_e_acentuada)
   // 	strcat(insercion, " ");
   // }
   //-------------------------------------------------- 
+
+  if (strlen(f_sil_e_acentuada) && f_sil_e_acentuada[strlen(f_sil_e_acentuada) - 1] != ' '){
+	   	strcat(f_sil_e_acentuada, " ");
+	  }
+
   strcat(f_sil_e_acentuada, "#%pausa 500%#");
   /*
     if (strcmp(continuacion_texto,"Aparte")==0) d_pausa=500;
@@ -1774,7 +1779,7 @@ void insertar_pausa_entre_grupos(t_frase_en_grupos * f_en_grupos, char *f_sil_e_
   dur_pausa = duracion_pausa(f_en_grupos);
   /* 
    * Averiguamos primeiro se se debe insertar unha pausa entre as proposicións
-   * nas que está dividida a frase. 
+   * nas que está dividida a frase.
    */
 
   if (dur_pausa > 0){
@@ -1861,13 +1866,18 @@ void Trat_fon::tratamento_fonetico_previo(t_frase_separada * rec_frase_separada,
     for (i = rec_frase_en_grupos->inicio; i <= rec_frase_en_grupos->fin; i++) {
       for (j = rec_frase_sintagmada[i].inicio; j <= rec_frase_sintagmada[i].fin; j++) {
 	if (frase_sil_e_acentuada[strlen(frase_sil_e_acentuada) - 1] != ' ') {
+
 	  strcat(frase_sil_e_acentuada, " ");
+
 	}
 	if ((rec_frase_separada + j)->clase_pal != SIGNO_PUNTUACION && 
 	    (rec_frase_separada + j)->clase_pal != CADENA_DE_SIGNOS) {
 	  strcat(frase_sil_e_acentuada, (rec_frase_separada + j)->pal_sil_e_acentuada);
 	  strcat(frase_sil_e_acentuada, " ");
 	}
+
+
+
 	//atono_ou_tonico_aberto_ou_pechado_e_w_x(frase_sil_e_acentuada, (rec_frase_separada + j), idioma);
 	insertar_pausa_entre_palabras(rec_frase_separada + j, frase_sil_e_acentuada);
       }
@@ -1875,6 +1885,9 @@ void Trat_fon::tratamento_fonetico_previo(t_frase_separada * rec_frase_separada,
       insertar_pausa_entre_sintagmas(rec_frase_sintagmada[i], frase_sil_e_acentuada);
 #endif
     }
+    if (strlen(frase_sil_e_acentuada) && frase_sil_e_acentuada[strlen(frase_sil_e_acentuada) - 1] != ' '){
+          strcat(frase_sil_e_acentuada, " ");
+        }
     //insertar_pausa_entre_grupos(rec_frase_en_grupos,frase_sil_e_acentuada);
     if (rec_frase_en_grupos->ruptura_entonativa == 1)
       strcat(frase_sil_e_acentuada, "#%ruptura-entonativa%#");
@@ -1886,6 +1899,7 @@ void Trat_fon::tratamento_fonetico_previo(t_frase_separada * rec_frase_separada,
   }
   if (frase_sil_e_acentuada[strlen(frase_sil_e_acentuada) - 1] != '#')
     asignar_pausa_entre_frases(frase_sil_e_acentuada);
+
 }
 
 
@@ -2038,9 +2052,10 @@ void insertar_pausa_entre_palabras(t_frase_separada * pal, char *f_sil_e_acentua
       strcpy(insercion, " ");
     }
     //        if (pal->clase_pal == SIGNO_PUNTUACION) {
-    sprintf(st_nu, "%d%%#", pal->pausa);
+    sprintf(st_nu, "%d", pal->pausa);
     strcat(insercion, "#%pausa ");
     strcat(insercion, st_nu);
+    strcat(insercion, "%#");
     //        }
     //        else
     //			strcat(insercion, "#%ruptura-entonativa%# ");
