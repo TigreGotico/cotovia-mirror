@@ -1,3 +1,7 @@
+Mirror from sourceforge https://sourceforge.net/p/cotovia/code/ci/master/tree/
+
+## Requirements
+
 * Requirements (Debian package name given in brackets)
   - GCC               (gcc, g++)
   - GNU Bison         (bison)
@@ -10,7 +14,7 @@
 
 
 
-Getting Cotovia from Git repository
+## Getting Cotovia from Git repository
 ___________________________________
 
 
@@ -26,7 +30,7 @@ Receiving objects: 100% (347/347), 148.90 MiB | 1.74 MiB/s, done.
 Resolving deltas: 100% (71/71), done.
 
 
-Building Cotovia
+## Building Cotovia
 _________________
 
 ~/compartido/COTOVIA$ cd cotovia-code/
@@ -48,7 +52,7 @@ cotovia  cotovia-ecess-m1
 
 
 
-Running Cotovia
+## Running Cotovia
 _______________
 
 
@@ -62,7 +66,7 @@ You should add cotovia to your PATH variable.
 When you run cotovia with no or wrong options, some help information appears on the screen with some simple examples at the end. 
 
 
-Building Cotovia Debian packages
+## Building Cotovia Debian packages
 ___________________________________
 
 
