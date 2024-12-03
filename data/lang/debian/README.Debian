@@ -1,0 +1,6 @@
+cotovia-lang for Debian
+--------------------------
+
+Installs language data for cotovia in /usr/share/cotovia/data/lang
+
+ -- Francisco Mendez <fmendez@gts.uvigo.es>  Wed, 22 Feb 2012 18:37:37 +0100

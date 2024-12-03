@@ -1,0 +1,15 @@
+* Build
+  - Untar into your cotovia directory
+  - This will create the following directories 
+    cotovia/data/lang
+    cotovia/data/lang/es
+    cotovia/data/lang/gl
+
+  - Make debian packages: cd into cotovia/data/ and
+    make debian-packages
+  - This will generate the following deb packages:
+       cotovia/data/cotovia-lang-es_version-name_all.deb
+       cotovia/data/cotovia-lang-gl_version-name_all.deb
+
+Copyright (C): 2000-2012 Group on Multimedia Technologies, Universidade de Vigo, Spain http://webs.uvigo.es/gtm_voz
+               1996-2012 Centro Ramon Pineiro para a Investigación en Humanidades, Xunta de Galicia, Santiago de Compostela, Spain http://www.cirp.es

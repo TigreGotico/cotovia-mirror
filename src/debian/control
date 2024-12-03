@@ -1,0 +1,27 @@
+Source: cotovia
+Section: sound
+Priority: extra
+Maintainer: <cotovia@gts.uvigo.es>
+Build-Depends: debhelper (>= 7.0.50~), bison, flex, libasound2-dev, libexpat1-dev, help2man
+Standards-Version: 3.9.1
+Homepage: http://webs.uvigo.es/gtm_voz/index.php?option=com_content&view=article&id=130
+
+Package: cotovia
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: cotovia-lang-gl | cotovia-lang-es, cotovia-voice-iago | cotovia-voice-sabela 
+Description: Text-to-speech system for Galician and Spanish languages. 
+ Cotovía is a text-to-speech system for Galician and Spanish languages veveloped by the Multimedia Technologies Group at the University of Vigo (Spain) and the Center 'Ramón Piñeiro' for Research in Humanities. 
+
+Package: cotovia-ecess-m1
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: cotovia-lang-gl | cotovia-lang-es 
+Description: Text processing module of Cotovia following ECESS specifications. 
+ Cotovía is a text-to-speech system for Galician and Spanish languages veveloped by the Multimedia Technologies Group at the University of Vigo (Spain) and the Center 'Ramón Piñeiro' for Research in Humanities. 
+ This program performs the tokenization, POS tagging and phonetic 
+ transcription of the input text, following the ECESS specifications for
+ the symbolic pre-processing module.
+ .
+ http://www.ecess.eu/
+

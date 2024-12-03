@@ -1,0 +1,201 @@
+#
+#Cotovia: Text-to-speech system for Galician and Spanish languages.
+
+#Developed by the Multimedia Technologies Group at the University of Vigo (Spain)
+# and the Center 'Ramón Piñeiro' for Research in Humanities.
+#http://webs.uvigo.es/gtm_voz
+#http://www.cirp.es
+
+#Copyright: 1996-2012  Multimedia Technologies Group, University of Vigo, Spain
+#           1996-2012 Centro Ramon Pineiro para a Investigación en Humanidades,
+#                     Xunta de Galicia, Santiago de Compostela, Spain
+
+#License: GPL-3.0+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# .
+# This package is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# .
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# .
+# On Debian systems, the complete text of the GNU General
+# Public License version 3 can be found in /usr/share/common-licenses/GPL-3.
+
+#______________________________________________________________________________
+
+
+vpath %.hpp ../../cotovia/include ../../util/include
+vpath %.cpp ../../cotovia ../../util
+
+HOSTTYPE := $(shell uname -m)
+ifeq ($(MAKECMDGOALS),)
+TARGET=$(EXEC)
+else
+TARGET=$(MAKECMDGOALS)
+endif
+
+ifeq ($(HOSTTYPE),x86_64)
+arch = x86_64
+bindir = ../../../bin64
+libdir = ../../../lib64
+DEFS += -D_x86_64
+else
+arch = i686
+bindir = ../../../bin
+libdir = ../../../lib
+endif
+
+#arch = 
+dist = release
+CFLAGS = $(DEFS) $(INCLUDE)# -m32
+#LDFLAGS = -m32
+LFLAGS = --nounistd
+
+DEBUG=$(findstring -dbg,$(MAKECMDGOALS))
+CROSS_COMPILE = $(findstring -win32,$(MAKECMDGOALS))
+crosscompiler=i586-mingw32msvc-
+#PROFILE = yes
+#USE_STLPORT = yes
+#STATIC_LIB = yes
+
+ifeq ($(CROSS_COMPILE),-win32)
+CC=$(crosscompiler)gcc
+AR=$(crosscompiler)ar
+RANLIB=$(crosscompiler)ranlib
+WIN32 = yes
+else
+AR = ar
+RANLIB = ranlib
+CC = gcc
+endif
+
+ifdef USE_STLPORT
+CFLAGS  += -pthread
+LDLIBS  += -lstlport
+INCLUDE += -I/usr/include/stlport
+endif
+
+ifdef PROFILE #para utilizar el gprof
+CFLAGS += -pg
+CFLAGS += --coverage
+#CFLAGS += -fbranch-probabilities
+LDFLAGS += -pg
+LDFLAGS += --coverage
+#LDFLAGS += -fbranch-probabilities
+endif
+
+ifeq ($(DEBUG),-dbg) #para depurar
+DEFS += -D_DEBUG
+CFLAGS += -g
+CFLAGS += -O0
+#LDLIBS += -lm
+dbg =-dbg
+dist = debug
+else #optimización
+CFLAGS += -O3
+#CFLAGS += -funroll-all-loops
+ifeq ($(HOSTTYPE),x86_64)
+#CFLAGS += -march=core2
+CFLAGS += -march=nocona
+#CFLAGS += -march=opteron
+else
+CFLAGS += -march=i686
+endif
+CFLAGS += -ffast-math
+#CFLAGS +=  -finline-limit=8192
+#CFLAGS += -fprofile-arcs -ftest-coverage
+#LDFLAGS += -fprofile-arcs -ftest-coverage
+#CFLAGS += -fbranch-probabilities
+#LDFLAGS += -fbranch-probabilities
+endif
+
+ifeq ($(CROSS_COMPILE),-win32)
+win = -win32
+INCLUDE += -I../../include
+LDLIBS += -lpcreposix -lpcre -lwinmm#WIN32 libreria multimedia
+LDFLAGS += -L../../../lib/win32 
+DLLWIN32FLAGS += -Wl,--output-def,$(libdir)/$@$(win)$(dbg).def,--out-implib,$(libdir)/$@$(win)$(dbg).lib
+DEFS = -D_WIN32
+dlext =.dll
+execext = .exe
+else
+dlext = .so
+endif
+
+
+#warnings
+#CFLAGS += -Wall
+#CFLAGS += -Wextra
+#CFLAGS += -Winline
+#CFLAGS += -Wno-write-strings
+#CFLAGS += -pedantic
+
+INCLUDE += -I../../cotovia/include -I../../util/include
+#LDFLAGS =
+LDFLAGS += -Wl,--unresolved-symbols=ignore-in-object-files
+#LDFLAGS += -static
+#LDLIBS += -lpcreposix -lpcre
+LDLIBS += -lm
+LDLIBS += -lstdc++
+LEX = flex
+OBJECTS = $(SOURCES:%.cpp=$(arch)/$(dist)/$(TARGET)/%.o)
+#SOURCES = $(wildcard *.cpp)
+YACC = bison
+
+
+$(EXEC)$(win)$(dbg): dirs $(OBJECTS)
+	$(CC) $(LDFLAGS) $(OBJECTS) $(LDLIBS) -o $(bindir)/$@$(execext)
+
+dep/$(dist)/$(TARGET)/%.d:%.cpp 
+	@mkdir -p dep/$(dist)/$(TARGET)
+	@$(CC) -MM $(INCLUDE) $< | sed "s/\($*\)\.o[ :]*/$(arch)\/$(dist)\/$(TARGET)\/\1.o dep\/$(dist)\/$(TARGET)\/$(@F) : /g" > $@
+
+$(arch)/$(dist)/$(TARGET)/%.o:%.cpp
+#	@mkdir -p $(arch)/$(dist)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+help:
+	@printf "\nTargets:\n\
+      \n\tmake, make $(EXEC) : (default) Compila $(EXEC) con optimización \
+      \n\tmake $(EXEC)-dbg : Compila sin optimizar y con información de depuracion \
+      \n\tmake $(EXEC)-win32 : Compila para windows 32 (cross-compiler)\
+      \n\tmake $(EXEC)-win32-dbg : Idem pero sin optimizar y con info de depuración\
+			\n\tmake dirs : Crea directorios para objetos, dependencias y binarios\
+      \n\tmake clean : Limpia objetos\
+			\n\tmake cleandep : Limpia dependencias\
+      \n\tmake cleanall : Limpia objetos y dependencias\
+      \n\tmake help : Esta ayuda\n"
+
+.PHONY: dirs
+dirs:
+	@mkdir -p dep/$(dist)/$(TARGET)
+	@mkdir -p $(arch)/$(dist)/$(TARGET)
+	@mkdir -p $(bindir)
+
+.PHONY: cleandep$(dbg)
+cleandep$(dbg):
+	rm -rf dep/$(dist)/*
+
+.PHONY: clean$(dbg)
+clean$(dbg):
+	rm -rf $(arch)/$(dist)/*
+
+.PHONY: cleanall$(dbg)
+cleanall$(dbg): cleandep$(dbg) clean$(dbg)
+
+.PHONY: distclean
+distclean:
+	rm -rf dep $(arch)
+
+ifneq ($(findstring clean,$(MAKECMDGOALS)),clean)
+ifneq ($(findstring help,$(MAKECMDGOALS)),help)
+include $(addprefix dep/$(dist)/$(TARGET)/, $(SOURCES:.cpp=.d))
+endif
+endif
+
