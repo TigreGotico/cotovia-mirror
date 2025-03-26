@@ -31,11 +31,7 @@
 
 
 BIN=$(DESTDIR)/usr/bin
-ifeq ($(shell uname -m),x86_64)
-bindir=../bin64
-else
 bindir=../bin
-endif
 cotovia-exec:
 	$(MAKE) -C cotovia
 	$(MAKE) -C cotovia libcotovia

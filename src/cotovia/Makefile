@@ -72,16 +72,9 @@ CC=gcc
 CXX=g++
 endif
 
-ifeq ($(HOSTTYPE),x86_64)
-arch = x86_64
-bindir = ../../bin64
-libdir = ../../lib64
-DEFS += -D_x86_64
-else
-arch = i686
+arch = native
 bindir = ../../bin
 libdir = ../../lib
-endif
 
 ifdef USE_STLPORT
 CFLAGS  += -pthread
@@ -109,15 +102,7 @@ else #optimizaci�n
 dist = release
 CFLAGS += -O3 -fpermissive
 #CFLAGS += -funroll-all-loops
-ifeq ($(HOSTTYPE),x86_64)
-#CFLAGS += -march=core2
-CFLAGS += -march=nocona
-#CFLAGS += -march=opteron
-else
-CFLAGS += -march=i686
-#CFLAGS += -m32
-#LDFLAGS += -m32
-endif
+CFLAGS += -march=native
 CFLAGS += -ffast-math# -ggdb3
 #CFLAGS +=  -finline-limit=8192
 #CFLAGS += -fprofile-arcs -ftest-coverage
