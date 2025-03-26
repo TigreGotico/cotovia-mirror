@@ -2,12 +2,12 @@
 #Cotovia: Text-to-speech system for Galician and Spanish languages.
 
 #Developed by the Multimedia Technologies Group at the University of Vigo (Spain)
-# and the Center 'Ramón Piñeiro' for Research in Humanities.
+# and the Center 'Ramï¿½n Piï¿½eiro' for Research in Humanities.
 #http://webs.uvigo.es/gtm_voz
 #http://www.cirp.es
 
 #Copyright: 1996-2012  Multimedia Technologies Group, University of Vigo, Spain
-#           1996-2012 Centro Ramon Pineiro para a Investigación en Humanidades,
+#           1996-2012 Centro Ramon Pineiro para a Investigaciï¿½n en Humanidades,
 #                     Xunta de Galicia, Santiago de Compostela, Spain
 
 #License: GPL-3.0+
@@ -97,16 +97,10 @@ CFLAGS += -O0
 #LDLIBS += -lm
 dbg =-dbg
 dist = debug
-else #optimización
+else #optimizaciï¿½n
 CFLAGS += -O3
 #CFLAGS += -funroll-all-loops
-ifeq ($(HOSTTYPE),x86_64)
-#CFLAGS += -march=core2
-CFLAGS += -march=nocona
-#CFLAGS += -march=opteron
-else
-CFLAGS += -march=i686
-endif
+CFLAGS += -march=native
 CFLAGS += -ffast-math
 #CFLAGS +=  -finline-limit=8192
 #CFLAGS += -fprofile-arcs -ftest-coverage
@@ -162,10 +156,10 @@ $(arch)/$(dist)/$(TARGET)/%.o:%.cpp
 
 help:
 	@printf "\nTargets:\n\
-      \n\tmake, make $(EXEC) : (default) Compila $(EXEC) con optimización \
-      \n\tmake $(EXEC)-dbg : Compila sin optimizar y con información de depuracion \
+      \n\tmake, make $(EXEC) : (default) Compila $(EXEC) con optimizaciï¿½n \
+      \n\tmake $(EXEC)-dbg : Compila sin optimizar y con informaciï¿½n de depuracion \
       \n\tmake $(EXEC)-win32 : Compila para windows 32 (cross-compiler)\
-      \n\tmake $(EXEC)-win32-dbg : Idem pero sin optimizar y con info de depuración\
+      \n\tmake $(EXEC)-win32-dbg : Idem pero sin optimizar y con info de depuraciï¿½n\
 			\n\tmake dirs : Crea directorios para objetos, dependencias y binarios\
       \n\tmake clean : Limpia objetos\
 			\n\tmake cleandep : Limpia dependencias\
