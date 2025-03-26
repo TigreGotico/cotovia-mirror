@@ -2,12 +2,12 @@
 #Cotovia: Text-to-speech system for Galician and Spanish languages.
 
 #Developed by the Multimedia Technologies Group at the University of Vigo (Spain)
-# and the Center 'Ramón Piñeiro' for Research in Humanities.
+# and the Center 'Ramï¿½n Piï¿½eiro' for Research in Humanities.
 #http://webs.uvigo.es/gtm_voz
 #http://www.cirp.es
 
 #Copyright: 1996-2012  Multimedia Technologies Group, University of Vigo, Spain
-#           1996-2012 Centro Ramon Pineiro para a Investigación en Humanidades,
+#           1996-2012 Centro Ramon Pineiro para a Investigaciï¿½n en Humanidades,
 #                     Xunta de Galicia, Santiago de Compostela, Spain
 
 #License: GPL-3.0+
@@ -40,7 +40,6 @@ cotovia-exec:
 	$(MAKE) -C cotovia
 	$(MAKE) -C cotovia libcotovia
 	$(MAKE) -C proyectos/libecess-common/ libecess-common
-	$(MAKE) -C proyectos/cotovia-ecess-m1
 
 install: cotovia-exec
 	install -d $(BIN)
